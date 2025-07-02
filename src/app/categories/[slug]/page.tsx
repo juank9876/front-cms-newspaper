@@ -1,15 +1,17 @@
-import { Metadata } from 'next'
 import { capitalize } from '@/utils/capitalize'
 import { fetchCategoryById } from '@/api-fetcher/fetcher'
 import { PreCategory } from '@/components/juankui/pre-rendered/pre-category'
 //import categoryTest from '@/lib/category-test.json'
 import { getCategorySlugToIdMap } from '@/lib/utils'
-import { PageSlugProps } from '@/types/types'
 import { notFound } from 'next/navigation'
 import { CardPostCategory } from '@/components/juankui/card-post-category'
 
 
-async function getCategoryFromParams (params: PageSlugProps['params']) {
+async function getCategoryFromParams ({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   const map = await getCategorySlugToIdMap()
   const { slug } = await params
   const id = map[slug]
@@ -20,9 +22,13 @@ async function getCategoryFromParams (params: PageSlugProps['params']) {
   return category
 }
 
-export async function generateMetadata ({ params }: PageSlugProps): Promise<Metadata> {
+export async function generateMetadata ({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   try {
-    const category = await getCategoryFromParams(params)
+    const category = await getCategoryFromParams({ params })
 
     return {
       title: capitalize(category.name || ''),
@@ -34,9 +40,13 @@ export async function generateMetadata ({ params }: PageSlugProps): Promise<Meta
   }
 }
 
-export default async function CategoryPage ({ params }: PageSlugProps) {
+export default async function CategoryPage ({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   try {
-    const category = await getCategoryFromParams(params)
+    const category = await getCategoryFromParams({ params })
     const posts = category.posts
 
     if (!posts || posts.length === 0) {

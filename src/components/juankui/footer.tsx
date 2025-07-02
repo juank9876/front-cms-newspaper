@@ -13,7 +13,7 @@ export function Footer ({ settings }: { settings: SiteSettings }) {
           {/* Aquí puedes añadir navegación o enlaces útiles */}
         </div>
 
-        {settings.social_links.length > 0 && (
+        {/*settings.social_links.length > 0 && (
           <div className="space-y-2">
             <h4 className="text-lg font-semibold">Redes sociales</h4>
             <div className="space-y-1">
@@ -30,7 +30,7 @@ export function Footer ({ settings }: { settings: SiteSettings }) {
               ))}
             </div>
           </div>
-        )}
+        )*/}
       </div>
     </footer>
   )

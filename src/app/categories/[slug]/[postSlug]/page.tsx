@@ -1,14 +1,16 @@
 // app/[slug]/post.tsx
 import { notFound } from 'next/navigation'
-import { Metadata } from 'next'
 import { capitalize } from '@/utils/capitalize'
 import { PrePost } from '@/components/juankui/pre-rendered/pre-post'
 import HtmlRenderer from '@/components/html-transform/html-renderer'
-import { PagePostSlugProps } from '@/types/types'
 import { getPostSlugToIdMap } from '@/lib/utils'
 import { fetchArticleById } from '@/api-fetcher/fetcher'
 
-async function getPostFromParams (params: PagePostSlugProps['params']) {
+async function getPostFromParams ({
+  params,
+}: {
+  params: Promise<{ postSlug: string }>
+}) {
   const map = await getPostSlugToIdMap()
   const { postSlug } = await params
   const id = map[postSlug]
@@ -18,9 +20,13 @@ async function getPostFromParams (params: PagePostSlugProps['params']) {
   return post
 }
 
-export async function generateMetadata ({ params }: PagePostSlugProps): Promise<Metadata> {
+export async function generateMetadata ({
+  params,
+}: {
+  params: Promise<{ postSlug: string }>
+}) {
   try {
-    const post = (await getPostFromParams(params)).post
+    const post = (await getPostFromParams({ params })).post
 
     return {
       title: capitalize(post.title || ''),
@@ -32,9 +38,13 @@ export async function generateMetadata ({ params }: PagePostSlugProps): Promise<
   }
 }
 
-export default async function PostPage ({ params }: PagePostSlugProps) {
+export default async function PostPage ({
+  params,
+}: {
+  params: Promise<{ postSlug: string }>
+}) {
   try {
-    const post = (await getPostFromParams(params)).post
+    const post = (await getPostFromParams({ params })).post
     return (
       <PrePost post={post}>
         <HtmlRenderer html={post.html_content} />

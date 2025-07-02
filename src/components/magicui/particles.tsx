@@ -13,7 +13,7 @@ interface MousePosition {
   y: number;
 }
 
-function MousePosition(): MousePosition {
+function MousePosition (): MousePosition {
   const [mousePosition, setMousePosition] = useState<MousePosition>({
     x: 0,
     y: 0,
@@ -46,7 +46,7 @@ interface ParticlesProps extends ComponentPropsWithoutRef<"div"> {
   vy?: number;
 }
 
-function hexToRgb(hex: string): number[] {
+function hexToRgb (hex: string): number[] {
   hex = hex.replace("#", "");
 
   if (hex.length === 3) {
