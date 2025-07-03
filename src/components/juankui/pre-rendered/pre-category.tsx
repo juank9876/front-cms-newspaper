@@ -14,7 +14,7 @@ export function PreCategory ({ children, category, className }: { children: Reac
       {isParticles && <ParticlesFull />}
       <HeroCategory {...category} />
       <Section>
-        <div className={cn('flex', className)}>
+        <div className={cn('flex flex-wrap', className)}>
           {children}
         </div>
       </Section>

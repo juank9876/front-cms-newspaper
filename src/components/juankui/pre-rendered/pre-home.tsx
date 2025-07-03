@@ -6,6 +6,7 @@ import { Section } from '../wrappers/section'
 import { isParticles } from '@/config/options'
 import { ParticlesFull } from '../particles'
 import { SiteSettings } from '@/types/types'
+//import { AsideList } from '../aside-items/aside-list'
 
 interface HomePage {
   children: ReactNode
@@ -19,9 +20,9 @@ export function PreHomePage ({ children, settings }: HomePage) {
 
       <HeroHomePage {...settings} />
       <Section>
-        <div className='flex max-w-[90vw] flex-col space-y-5 lg:max-w-[60vw]'>
-          {children}
-        </div>
+
+        {children}
+
       </Section>
     </MainWrapper>
   )
