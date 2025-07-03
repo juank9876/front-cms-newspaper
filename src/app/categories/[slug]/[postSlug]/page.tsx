@@ -45,10 +45,10 @@ export default async function PostPage ({
 }) {
   try {
     const post = (await getPostFromParams({ params })).post
+
     return (
       <PrePost post={post}>
         <HtmlRenderer html={post.html_content} />
-
       </PrePost>
     )
   } catch (error) {

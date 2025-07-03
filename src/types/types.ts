@@ -57,6 +57,7 @@ export type Category = {
   status: string
   seo_url: string
   total_posts: string
+  post_count?: string
   child_categories: Category[] // vacíos en tu caso, pero pueden tener datos
   child_categories_count: number
   posts: Post[]

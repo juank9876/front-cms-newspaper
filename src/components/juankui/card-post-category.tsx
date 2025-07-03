@@ -9,12 +9,12 @@ export function CardPostCategory ({ post, category }: { post: Post, category: Ca
   return (
     <>
       {/*Card para PC*/}
-      <Card className="duration-400 scale-custom relative hidden h-[600px] w-[400px] overflow-hidden border-none p-0 shadow-none transition lg:flex">
+      <Card className="duration-400 scale-custom relative hidden h-[420px] w-[300px] overflow-hidden border-none p-0 shadow-none transition lg:flex">
         <Link href={`/categories/${category.slug}/${post.slug}`} className="h-full w-full">
           <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
           <CardContent className="flex h-full flex-col items-center overflow-hidden rounded">
-            {/* Imagen izquierda con altura completa */}
-            <div className='relative h-[300px] w-[400px]'>
+            {/* Imagen superior, más compacta */}
+            <div className="relative h-[180px] w-[300px]">
               <Image
                 src={
                   post.featured_image ||
@@ -25,14 +25,15 @@ export function CardPostCategory ({ post, category }: { post: Post, category: Ca
                 className="rounded-t-lg object-cover"
               />
             </div>
-            {/* Contenido derecho con altura igual */}
-            <div className="flex flex-col items-start justify-between px-6 py-8">
-              <h2 className="mb-0 text-start text-2xl font-semibold">{post.title}</h2>
-              <p className="text-muted-foreground mb-0 pb-0 text-sm">{formatDate(post.published_at)}</p>
-              <p className="text-muted-foreground text-base">{post.excerpt}</p>
+
+            {/* Contenido compacto */}
+            <div className="flex flex-col items-start justify-between space-y-2 px-4 py-4">
+              <h2 className="line-clamp-2 text-start text-lg font-semibold">{post.title}</h2>
+              <p className="text-muted-foreground text-xs">{formatDate(post.published_at)}</p>
+              <p className="text-muted-foreground line-clamp-3 text-sm">{post.excerpt}</p>
 
               <div className="flex flex-row items-center space-x-3 pt-2">
-                <div className="size-10 relative mb-0 overflow-hidden rounded-full">
+                <div className="size-8 relative overflow-hidden rounded-full">
                   <Image
                     src={
                       post.author_avatar ||
@@ -49,6 +50,7 @@ export function CardPostCategory ({ post, category }: { post: Post, category: Ca
           </CardContent>
         </Link>
       </Card>
+
 
       {/*Card para movil*/}
       <Card className="duration-400 scale-custom relative w-full overflow-hidden border-none p-0 shadow-none transition hover:bg-[var(--color-primary-dark)] lg:hidden">

@@ -18,10 +18,10 @@ function ListItem ({ title, href, children }: ListItemProps) {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <Link href={href} className="block space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[var(--color-accent)] hover:text-white focus:bg-[var(--color-accent)] focus:text-white">
-          <p className="text-lg font-medium leading-none">{title}</p>
+        <Link href={href} className="group/modal block space-y-1 rounded-md border p-3 leading-none no-underline outline-none transition-colors hover:border-[var(--color-accent)] hover:text-white">
+          <p className="text-lg font-medium leading-none transition-none group-hover/modal:text-white">{title}</p>
           {children && (
-            <p className="line-clamp-2 text-sm leading-snug">
+            <p className="line-clamp-2 text-sm leading-snug transition-none group-hover/modal:text-white">
               {children}
             </p>
           )}
@@ -64,7 +64,7 @@ export function RenderMenu ({ normalizedItems, categoriesItems }: { normalizedIt
                   <>
                     <NavigationMenuTrigger>{item.title.toUpperCase()}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      <ul className="grid w-[400px] gap-1 p-1 md:w-[500px] md:grid-cols-1 lg:w-[600px]">
                         {categoriesItems.map((category) => (
                           <ListItem key={category.id} title={capitalize(category.name)} href={`/categories/${category.slug}`}>
                             {category.description}
@@ -91,7 +91,7 @@ export function RenderMenu ({ normalizedItems, categoriesItems }: { normalizedIt
             <NavigationMenuItem>
               <NavigationMenuTrigger>CATEGORIES</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <ul className="grid w-[400px] gap-1 p-1 md:w-[500px] md:grid-cols-1 lg:w-[600px]">
                   {categoriesItems.map((category) => (
                     <ListItem key={category.id} title={capitalize(category.name)} href={`/categories/${category.slug}`}>
                       {category.description}

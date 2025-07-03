@@ -31,6 +31,7 @@ export async function Header () {
     <>
       <header className="sticky top-0 z-50 flex w-full flex-col items-center justify-center bg-gradient-to-b from-neutral-200 to-white p-3 lg:p-0">
         <div className='grid w-full grid-cols-3 items-center justify-center px-5'>
+          {/* Movil */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">

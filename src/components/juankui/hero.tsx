@@ -65,7 +65,7 @@ export function HeroPost ({ title, excerpt, primary_category, author_avatar, aut
 
         <Card className="w-custom bg-[var(--color-accent]) relative flex h-fit flex-row items-center justify-center border-2 bg-[var(--color-primary)] p-0">
           <MagicCard className="m-0 w-full p-0">
-            <CardContent className="flex flex-col items-center justify-center space-y-5 bg-gradient-to-br from-neutral-200 to-white p-10">
+            <CardContent className="flex flex-col items-center justify-center space-y-5 bg-gradient-to-br from-neutral-200 to-white p-8">
 
               {
                 primary_category?.name && (
