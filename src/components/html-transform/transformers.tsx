@@ -83,9 +83,7 @@ export function transformCol (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-
 //Version Bootstrap
-
 export function transformCard (el: Element, options: HTMLReactParserOptions) {
   return (
     <CardShine className='relative mx-auto my-5 flex w-full max-w-[350px] overflow-hidden transition duration-500 hover:scale-105'>
@@ -93,6 +91,7 @@ export function transformCard (el: Element, options: HTMLReactParserOptions) {
     </CardShine>
   )
 }
+
 export function transformCardBody (el: Element, options: HTMLReactParserOptions) {
   return (
     <div className='flex flex-col space-y-3'>
@@ -179,12 +178,12 @@ export function transformH3 (el: Element, options: HTMLReactParserOptions) {
 
 export function transformLi (el: Element, options: HTMLReactParserOptions) {
   return (
-    <li className="text-p-custom relative mt-1 pl-6 leading-relaxed text-zinc-800">
-      <span className="absolute left-0 top-1.5">
+    <li className="relative mt-1 flex flex-row items-center justify-start space-x-2 pl-5 leading-relaxed">
+      <span className="relative">
         <Circle className="size-3" />
       </span>
 
-      <div className="prose text-black max-w-none [&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold">
+      <div className="prose max-w-none [&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold">
         {domToReact(el.children as DOMNode[], options)}
       </div>
     </li>
@@ -232,7 +231,7 @@ export function transformCode (el: Element) {
   if (!codeContent) return null; // ⛔ No renderizar si está vacío
 
   return (
-    <code className="mx-2 block items-end justify-start whitespace-pre px-2">
+    <code className="mx-0.5 block items-end justify-start whitespace-pre">
       {getText(el.children as DOMNode[])}
     </code>
   );

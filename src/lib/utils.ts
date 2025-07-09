@@ -23,6 +23,7 @@ export function formatDate(dateString: string): string {
 type PageMeta = {
   id: string
   slug: string
+  parent_id: string | null
   // puedes añadir más campos si los necesitas
 }
 
@@ -43,12 +44,12 @@ export async function getPageSlugToIdMap(): Promise<SlugToIdMap> {
 
 export async function getCategorySlugToIdMap(): Promise<SlugToIdMap> {
   const categories = await fetchCategories()
-  //console.log(categories)
   const slugIds: PageMeta[] = categories
 
   const map: SlugToIdMap = {}
   for (const slugId of slugIds) {
     map[slugId.slug] = slugId.id
+
   }
 
   return map
@@ -65,4 +66,8 @@ export async function getPostSlugToIdMap(): Promise<SlugToIdMap> {
   }
 
   return map
+}
+
+export function cleanSlug(slug: string) {
+  return slug.replace(/^\/+|\/+$/g, '')
 }

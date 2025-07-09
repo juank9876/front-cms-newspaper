@@ -11,18 +11,23 @@ interface SectionProps {
   className?: string
 }
 
-export function Section ({ children, className }: SectionProps) {
+export function Section({ children, className }: SectionProps) {
+  function ChildrenDiv() {
+    return (
+      <div className='flex w-full flex-col space-y-5 lg:flex-[0.7]'>
+        {children}
+      </div>
+    )
+  }
   return (
     <section className={`${className} relative flex w-full items-center justify-center`}>
       {isParticles && <ParticlesFull />}
 
-      <article className={`space gap-15 flex w-[90vw] flex-col items-start justify-center space-y-5 rounded-lg lg:w-[60vw] lg:flex-row`}>
-        <div className='flex w-full flex-col space-y-5 lg:flex-[0.7]'>
-          {children}
-        </div>
+      <article className="gap-15 flex flex-col w-[90vw] items-stretch justify-center rounded-lg lg:w-[60vw] lg:flex-row">
+        <ChildrenDiv />
+        <div className="hidden h-auto w-px self-stretch bg-[var(--color-secondary)] lg:block" />
         <AsideList />
       </article>
-
     </section>
   )
 }

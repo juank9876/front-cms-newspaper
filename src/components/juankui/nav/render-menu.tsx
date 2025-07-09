@@ -5,23 +5,26 @@ import { navPosition } from '@/config/options'
 import { capitalize } from '@/utils/capitalize'
 import { NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu'
 import { Link } from '../optionals/link';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Category, NavItemType } from '@/types/types';
+import { ArrowRight } from 'lucide-react';
 
 type ListItemProps = {
   title: string;
   href: string;
   children?: React.ReactNode;
+  className?: string
+  isChild?: boolean
 }
 
-function ListItem ({ title, href, children }: ListItemProps) {
+function ListItem({ title, href, children, className, isChild = false }: ListItemProps) {
   return (
     <li>
       <NavigationMenuLink asChild>
         <Link href={href} className="group/modal block space-y-1 rounded-md border p-3 leading-none no-underline outline-none transition-colors hover:border-[var(--color-accent)] hover:text-white">
-          <p className="text-lg font-medium leading-none transition-none group-hover/modal:text-white">{title}</p>
+          <p className="text-lg font-medium leading-none transition-none group-hover/modal:text-white">{isChild && (<ArrowRight className='inline mr-2' />)}{title}</p>
           {children && (
-            <p className="line-clamp-2 text-sm leading-snug transition-none group-hover/modal:text-white">
+            <p className={`${className} line-clamp-2 text-sm leading-snug transition-none group-hover/modal:text-white`}>
               {children}
             </p>
           )}
@@ -31,7 +34,7 @@ function ListItem ({ title, href, children }: ListItemProps) {
   )
 }
 
-export function RenderMenu ({ normalizedItems, categoriesItems }: { normalizedItems: NavItemType[], categoriesItems: Category[] }) {
+export function RenderMenu({ normalizedItems, categoriesItems }: { normalizedItems: NavItemType[], categoriesItems: Category[] }) {
   const [isCategories, setIsCategories] = useState(false)
 
   return (
@@ -93,10 +96,29 @@ export function RenderMenu ({ normalizedItems, categoriesItems }: { normalizedIt
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-1 p-1 md:w-[500px] md:grid-cols-1 lg:w-[600px]">
                   {categoriesItems.map((category) => (
-                    <ListItem key={category.id} title={capitalize(category.name)} href={`/categories/${category.slug}`}>
-                      {category.description}
-                    </ListItem>
+                    <Fragment key={category.id}>
+                      {
+                        category.child_categories_count === 0 && category.parent_id == null && (
+                          <ListItem title={capitalize(category.name)} href={`/categories/${category.slug}`}>
+                            {category.description}
+                          </ListItem>
+                        )
+                      }
+                      {
+                        category.parent_id != null && (
+                          <Fragment key={category.id}>
+                            <ListItem title={capitalize(category.parent_name!)} href={`/categories/${category.parent_slug}`}>
+
+                            </ListItem>
+                            <ListItem isChild title={capitalize(category.name!)} href={`/categories/${category.parent_slug}/${category.slug}`}>
+                              {category.description}
+                            </ListItem>
+                          </Fragment>
+                        )
+                      }
+                    </Fragment>
                   ))}
+
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

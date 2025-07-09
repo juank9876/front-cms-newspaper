@@ -68,22 +68,6 @@ body {
 }
 
 
-.bg-gradient-right {
-  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-secondary-light));
-}
-
-.bg-gradient-top {
-  background-image: linear-gradient(to top, var(--color-primary-light), var(--color-secondary-light));
-}
-
-.bg-gradient-bottom {
-  background-image: linear-gradient(to bottom, var(--color-primary-light), var(--color-secondary-light));
-}
-
-.bg-gradient-diagonal {
-  background-image: linear-gradient(45deg, var(--color-primary-light), var(--color-secondary-light));
-}
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -139,8 +123,8 @@ body {
     @apply font-bold text-xl
   }
 
-  p {
-    @apply text-base lg:text-xl leading-relaxed py-1 text-gray-600 hover:text-gray-800 transition duration-500
+  p, li, span {
+    @apply text-base lg:text-xl leading-relaxed py-1 text-[#4a4a4a] hover:text-gray-800 transition duration-500
   }
 }
 
@@ -185,9 +169,6 @@ body {
     @apply w-[90vw] lg:w-[70vw]
   }
 
-  .text-p-custom {
-    @apply text-lg
-  }
 
 }
 

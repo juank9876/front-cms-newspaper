@@ -18,8 +18,7 @@ type BreadcrumbsProps = {
   className?: string
 };
 
-export function Breadcrumbs ({ breadcrumbs, className }: BreadcrumbsProps) {
-
+export function Breadcrumbs({ breadcrumbs, className }: BreadcrumbsProps) {
   const { nonCurrentBreadcrumbs, currentBreadcrumb } = useMemo(() => {
     // 1. Normaliza el array: solo el último es "current"
     const normalized = breadcrumbs.map((b, i) => ({
@@ -32,6 +31,7 @@ export function Breadcrumbs ({ breadcrumbs, className }: BreadcrumbsProps) {
     const enhanced = [...normalized];
     const last = enhanced.at(-1);
 
+
     if (last?.type === "category" || last?.type === "post") {
       enhanced.splice(1, 0, {
         title: "Categories",
@@ -39,6 +39,19 @@ export function Breadcrumbs ({ breadcrumbs, className }: BreadcrumbsProps) {
         type: "system",
         current: false,
       });
+    }
+
+    if (last?.type === "category" || last?.type === "post" && enhanced[2]) {
+      const rawUrl = enhanced[2].url.replace(/^\/+/, "") // quitar `/` inicial si existe
+
+      const cleanUrl = rawUrl.startsWith("categories/")
+        ? rawUrl
+        : `categories/${rawUrl}`
+
+      enhanced[2] = {
+        ...enhanced[2],
+        url: `/${cleanUrl}`, // asegurar `/` inicial
+      }
     }
 
     if (last?.type === "post") {
@@ -58,7 +71,22 @@ export function Breadcrumbs ({ breadcrumbs, className }: BreadcrumbsProps) {
 
         console.log("✅ Final category URL:", `/${cleanUrl}`);
       }
+      if (enhanced.length === 5) {
+        const parentUrl = breadcrumbs[1].url.replace(/^\/+/, '')
+        const currentUrl = breadcrumbs[2].url.replace(/^\/+/, '')
+
+        enhanced.splice(3, 1, {
+          title: breadcrumbs[2].title,
+          url: `/categories/${parentUrl}${currentUrl}`,
+          type: "system",
+          current: false,
+        });
+        console.log(enhanced[3])
+      }
     }
+
+
+
 
     // 3. Separar current vs. no current
     const currentBreadcrumb = enhanced.find((b) => b.current);

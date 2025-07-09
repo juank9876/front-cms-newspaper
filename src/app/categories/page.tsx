@@ -5,13 +5,13 @@ import { ShineBorder } from "@/components/magicui/shine-border"
 import { Card, CardContent } from "@/components/ui/card"
 import { formatDate } from "@/lib/utils"
 
-export default async function CategoriesPage () {
+export default async function CategoriesPage() {
   const categories = await fetchCategories()
-
+  console.log(categories)
   return (
-    <main className={`flex w-full flex-1 flex-col items-center justify-center pb-10`}>
-      <Section className="h-full">
-        <div className='size-full flex flex-col items-center justify-center space-x-0 space-y-5 lg:max-w-[60vw] lg:flex-row lg:flex-wrap lg:space-x-5 lg:space-y-0'>
+    <main className={`flex w-full flex-col items-center justify-center pb-10`}>
+      <Section className="h-full items-center flex flex-col justify-center my-10">
+        <div className=' grid grid-cols-2 gap-5 items-center justify-center space-x-0 space-y-5 lg:max-w-[60vw] lg:flex-row lg:flex-wrap lg:space-x-5 lg:space-y-0'>
           {categories?.map((category) => (
             <Card key={category.seo_url} className="duration-400 scale-custom relative h-full w-full overflow-hidden border-none p-0 shadow-none transition hover:bg-[var(--color-primary-dark)]">
               <Link href={`/categories/${category.seo_url}`} className="flex w-full">
