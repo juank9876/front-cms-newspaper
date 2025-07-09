@@ -21,9 +21,14 @@ export function RecentArticles({ articles, className }: { articles: Post[], clas
       <DivAccent />
       <ul className='flex flex-col gap-1'>
         {sortedArticles.map((article, index) => {
-          const url = article.breadcrumbs.length === 4 ?
-            `/categories${article.breadcrumbs[1].url}${article.breadcrumbs[3].url.slice(1)}` :
-            `/categories${article.breadcrumbs[2].url}`
+
+          const url =
+            article.breadcrumbs.length === 4 ?
+              `/categories${article.breadcrumbs[1].url}${article.breadcrumbs[3].url.slice(1)}` :
+              article.breadcrumbs.length === 2 ?
+                `/categories${article.breadcrumbs[1].url}`
+
+                : `/categories${article.breadcrumbs[2].url}`
 
           return (
             <li key={article.id || index}>

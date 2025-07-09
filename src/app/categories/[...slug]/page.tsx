@@ -35,6 +35,7 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
 
     if (categoryId) {
+
         const category = await fetchCategoryById(categoryId)
 
         {/*Si hay subcategoria, comprobar*/ }
@@ -53,12 +54,12 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
     if (postId) {
 
-
         const post = (await fetchArticleById(postId)).post
+
 
         if (slugArray.length === 3) {
             if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0] || cleanSlug(post.breadcrumbs[2].url) !== slugArray[1]) {
-                //console.log(post.breadcrumbs[1].url, slugArray[0], post.breadcrumbs[2].url, slugArray[1])
+                console.log(post.breadcrumbs[1].url, slugArray[0], post.breadcrumbs[2].url, slugArray[1])
                 return notFound()
             } else
                 return { type: 'post', post }

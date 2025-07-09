@@ -6,6 +6,7 @@ import { fetchSiteSettings } from "@/api-fetcher/fetcher";
 import { ViewTransitions } from 'next-view-transitions'
 import { hexToOklch } from "@/utils/hex-to-oklch";
 import { Providers } from "./providers";
+import Head from "next/head";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -19,7 +20,7 @@ const poppins = Poppins({
 });
 
 
-export default async function RootLayout ({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const settings = await fetchSiteSettings()
   //cambiar el valor para distinta tonalidad
   //const primaryLightColor = hexToOklch(settings.primary_color, 0.9)
@@ -36,12 +37,12 @@ export default async function RootLayout ({ children }: Readonly<{ children: Rea
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning className={`${onest.variable} ${poppins.variable}`}>
-        <head>
+        <Head>
           <title>{settings.meta_title}</title>
           <meta name="description" content={settings.meta_description} />
           {/* puedes usar settings.favicon, site_logo, etc */}
           <link rel="icon" href={settings.favicon || "/vercel.svg"} />
-        </head>
+        </Head>
         <body
           style={{
             '--color-primary': settings.primary_color,

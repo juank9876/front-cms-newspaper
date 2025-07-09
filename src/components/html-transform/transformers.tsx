@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import BrandlistyWidget from '../juankui/brandlisty-widget'
 
-export function transformBrandlisty (el: Element) {
+export function transformBrandlisty(el: Element) {
   const { apikey, listid, boton, limit, id } = el.attribs
 
   return (
@@ -26,7 +26,7 @@ export function transformBrandlisty (el: Element) {
 }
 
 //Version upgraded chatgp
-export function transformRow (el: Element, options: HTMLReactParserOptions) {
+export function transformRow(el: Element, options: HTMLReactParserOptions) {
   const validChildren = el.children.filter(
     (child) => child.type === 'tag'
   ) as Element[]
@@ -40,7 +40,7 @@ export function transformRow (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformCol (el: Element, options: HTMLReactParserOptions) {
+export function transformCol(el: Element, options: HTMLReactParserOptions) {
   const classStr = el.attribs?.class || ''
 
   const getTailwindWidth = (classStr: string): string | number => {
@@ -84,7 +84,7 @@ export function transformCol (el: Element, options: HTMLReactParserOptions) {
 }
 
 //Version Bootstrap
-export function transformCard (el: Element, options: HTMLReactParserOptions) {
+export function transformCard(el: Element, options: HTMLReactParserOptions) {
   return (
     <CardShine className='relative mx-auto my-5 flex w-full max-w-[350px] overflow-hidden transition duration-500 hover:scale-105'>
       {domToReact(el.children as DOMNode[], options)}
@@ -92,7 +92,7 @@ export function transformCard (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformCardBody (el: Element, options: HTMLReactParserOptions) {
+export function transformCardBody(el: Element, options: HTMLReactParserOptions) {
   return (
     <div className='flex flex-col space-y-3'>
       {domToReact(el.children as DOMNode[], options)}
@@ -100,7 +100,7 @@ export function transformCardBody (el: Element, options: HTMLReactParserOptions)
   )
 }
 
-export function transformTextElement (el: Element, options: HTMLReactParserOptions) {
+export function transformTextElement(el: Element, options: HTMLReactParserOptions) {
   return (
     <div className="text-element py-3">
       {domToReact(el.children as DOMNode[], options)}
@@ -108,7 +108,7 @@ export function transformTextElement (el: Element, options: HTMLReactParserOptio
   )
 }
 
-export function transformContainer (el: Element, options: HTMLReactParserOptions) {
+export function transformContainer(el: Element, options: HTMLReactParserOptions) {
   return (
     <div className="border-primary container rounded-lg">
       {domToReact(el.children as DOMNode[], options)}
@@ -117,7 +117,7 @@ export function transformContainer (el: Element, options: HTMLReactParserOptions
 }
 
 //Elementos HTML
-export function transformForm (el: Element, options: HTMLReactParserOptions) {
+export function transformForm(el: Element, options: HTMLReactParserOptions) {
   return (
     <form className="flex flex-row border border-gray-700">
       {domToReact(el.children as DOMNode[], options)}
@@ -125,7 +125,7 @@ export function transformForm (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformButton (el: Element, options: HTMLReactParserOptions) {
+export function transformButton(el: Element, options: HTMLReactParserOptions) {
   return (
     <Button variant={'accent'} asChild>
       <a
@@ -138,11 +138,11 @@ export function transformButton (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformImg (el: Element) {
+export function transformImg(el: Element) {
   return (
     <div className='relative h-[200px] w-full'>
       <Image
-        alt={el.attribs.alt}
+        alt={el.attribs.alt || 'sample image'}
         //src={'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKbWAJHSZvmB6idZtJ6VtB1O6pvq2K7UVgIzsSxcpyxmu2GOqZwBlgV-NJm1kSNLJl7fnqNRG4ep75DRePRSgWM_v99GQISy6BUURYHYHnOg'}
         src={el.attribs.src || 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKbWAJHSZvmB6idZtJ6VtB1O6pvq2K7UVgIzsSxcpyxmu2GOqZwBlgV-NJm1kSNLJl7fnqNRG4ep75DRePRSgWM_v99GQISy6BUURYHYHnOg'}
         fill
@@ -153,7 +153,7 @@ export function transformImg (el: Element) {
   )
 }
 
-export function transformH2 (el: Element, options: HTMLReactParserOptions) {
+export function transformH2(el: Element, options: HTMLReactParserOptions) {
   return (
     <div className='flex flex-col space-y-5 pb-3 pt-10'>
       <h2>
@@ -163,7 +163,7 @@ export function transformH2 (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformH3 (el: Element, options: HTMLReactParserOptions) {
+export function transformH3(el: Element, options: HTMLReactParserOptions) {
   //const icons = [ArrowRight, Star, Sparkles, Flame, Bolt]
   //const RandomIcon = icons[Math.floor(Math.random() * icons.length)]
 
@@ -176,7 +176,7 @@ export function transformH3 (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformLi (el: Element, options: HTMLReactParserOptions) {
+export function transformLi(el: Element, options: HTMLReactParserOptions) {
   return (
     <li className="relative mt-1 flex flex-row items-center justify-start space-x-2 pl-5 leading-relaxed">
       <span className="relative">
@@ -190,7 +190,7 @@ export function transformLi (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformP (el: Element, options: HTMLReactParserOptions) {
+export function transformP(el: Element, options: HTMLReactParserOptions) {
   return (
 
     <p className="[&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold">
@@ -199,7 +199,7 @@ export function transformP (el: Element, options: HTMLReactParserOptions) {
   )
 }
 
-export function transformPre (el: Element, options: HTMLReactParserOptions) {
+export function transformPre(el: Element, options: HTMLReactParserOptions) {
 
   return (
     <pre className="overflow-x-auto rounded-md bg-zinc-900 p-4 text-white">
@@ -208,7 +208,7 @@ export function transformPre (el: Element, options: HTMLReactParserOptions) {
   );
 }
 
-export function transformCode (el: Element) {
+export function transformCode(el: Element) {
 
   const getText = (nodes: DOMNode[]): string =>
     nodes
@@ -237,7 +237,7 @@ export function transformCode (el: Element) {
   );
 }
 
-export function transformStrong (el: Element, options: HTMLReactParserOptions) {
+export function transformStrong(el: Element, options: HTMLReactParserOptions) {
   return (
     <strong className="flex font-bold">
       {domToReact(el.children as DOMNode[], options)}
