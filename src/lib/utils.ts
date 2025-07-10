@@ -10,14 +10,39 @@ export function normalizeUrl(url: string): string {
   return '/' + url.replace(/^\/+/, '')
 }
 
-export function formatDate(dateString: string): string {
-  const date = new Date(dateString)
+export function formatDate(
+  dateInput: string | Date,
+  options?: {
+    includeTime?: boolean
+    uppercase?: boolean
+    shortMonth?: boolean
+    withTimeZone?: boolean
+  }
+): string {
+  const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput
 
-  return new Intl.DateTimeFormat('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+  const { includeTime = false, uppercase = false, shortMonth = true, withTimeZone = false } = options || {}
+
+  const datePart = new Intl.DateTimeFormat("es-ES", {
+    day: "2-digit",
+    month: shortMonth ? "short" : "long",
+    year: "numeric",
   }).format(date)
+
+  let result = datePart
+
+  if (includeTime) {
+    const timePart = date
+      .toLocaleTimeString("es-ES", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+
+    result = `${datePart} - ${timePart}${withTimeZone ? " CEST" : ""}`
+  }
+
+  return uppercase ? result.toUpperCase() : result
 }
 
 type PageMeta = {
@@ -57,7 +82,6 @@ export async function getCategorySlugToIdMap(): Promise<SlugToIdMap> {
 
 export async function getPostSlugToIdMap(): Promise<SlugToIdMap> {
   const posts = await fetchArticles()
-  //console.log(categories)
   const slugIds: PageMeta[] = posts
 
   const map: SlugToIdMap = {}

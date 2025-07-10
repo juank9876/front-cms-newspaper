@@ -69,7 +69,6 @@ export function Breadcrumbs({ breadcrumbs, className }: BreadcrumbsProps) {
           url: `/${cleanUrl}`, // asegurar slash inicial
         };
 
-        console.log("✅ Final category URL:", `/${cleanUrl}`);
       }
       if (enhanced.length === 5) {
         const parentUrl = breadcrumbs[1].url.replace(/^\/+/, '')
@@ -81,7 +80,6 @@ export function Breadcrumbs({ breadcrumbs, className }: BreadcrumbsProps) {
           type: "system",
           current: false,
         });
-        console.log(enhanced[3])
       }
     }
 

@@ -33,17 +33,14 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
     const categoryId = categoryMap[categorySlug]
     const postId = postMap[postSlug]
 
-
     if (categoryId) {
 
         const category = await fetchCategoryById(categoryId)
 
         {/*Si hay subcategoria, comprobar*/ }
         if (slugArray.length === 2) {
-            console.log(cleanSlug(category.breadcrumbs[1].url), slugArray[0])
             if (cleanSlug(category.breadcrumbs[1].url) !== slugArray[0]) {
 
-                console.error('not match')
                 return notFound()
             }
 
@@ -58,6 +55,8 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
 
         if (slugArray.length === 3) {
+            console.log('aqui 3');
+            console.log(slugArray);
             if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0] || cleanSlug(post.breadcrumbs[2].url) !== slugArray[1]) {
                 console.log(post.breadcrumbs[1].url, slugArray[0], post.breadcrumbs[2].url, slugArray[1])
                 return notFound()
@@ -66,7 +65,12 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
         }
         if (slugArray.length === 2) {
+            console.log('aqui 2');
+            console.log(slugArray)
+
             if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0]) {
+                console.log(post.breadcrumbs[1].url, slugArray[0]);
+
                 return notFound()
             }
         }

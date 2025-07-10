@@ -1,4 +1,4 @@
-import { Onest, Poppins } from "next/font/google";
+import { Inter, Onest, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/juankui/header";
 import { Footer } from "@/components/juankui/footer";
@@ -19,6 +19,12 @@ const poppins = Poppins({
   variable: "--font-poppins"
 });
 
+const inter = Inter({
+  weight: "400", // o ["400", "700"], según necesites
+  subsets: ["latin"],
+  variable: "--font-inter"
+});
+
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const settings = await fetchSiteSettings()
@@ -36,7 +42,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <ViewTransitions>
-      <html lang="en" suppressHydrationWarning className={`${onest.variable} ${poppins.variable}`}>
+      <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
         <Head>
           <title>{settings.meta_title}</title>
           <meta name="description" content={settings.meta_description} />

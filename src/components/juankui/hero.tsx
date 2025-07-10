@@ -1,17 +1,18 @@
-import { Star } from "lucide-react"
+import { Clock, Star } from "lucide-react"
 import { BoxReveal } from "../magicui/box-reveal"
 import { VideoHero } from "./optionals/video-hero"
 import Image from "next/image"
 import { Post, Page, SiteSettings, Category } from '@/types/types'
-import { formatDate } from "@/lib/utils"
+import { cleanSlug, formatDate } from "@/lib/utils"
 import { BorderBeam } from "../magicui/border-beam"
 import { Card, CardContent } from "../ui/card"
 import { MagicCard } from "../magicui/magic-card"
 import { Breadcrumbs } from "./breadcrumbs"
+import { Link } from "./optionals/link"
 
 
 
-export function HeroHomePage ({ meta_title, meta_description, site_title }: SiteSettings) {
+export function HeroHomePage({ meta_title, meta_description, site_title }: SiteSettings) {
 
   return (
     <section className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
@@ -38,7 +39,7 @@ export function HeroHomePage ({ meta_title, meta_description, site_title }: Site
   )
 }
 
-export function HeroPage ({ title, meta_description, breadcrumbs }: Page) {
+export function HeroPage({ title, meta_description, breadcrumbs }: Page) {
   return (
     <section className="itju-center mb-20 mt-5 flex w-full overflow-hidden bg-transparent">
       <div className="w-custom flex w-full items-start justify-start">
@@ -55,67 +56,138 @@ export function HeroPage ({ title, meta_description, breadcrumbs }: Page) {
   )
 }
 
-export function HeroPost ({ title, excerpt, primary_category, author_avatar, author_name, created_at, breadcrumbs }: Post) {
+export function HeroPost({
+  title,
+  excerpt,
+  primary_category,
+  author_avatar,
+  author_name,
+  created_at,
+  breadcrumbs,
+  featured_image
+}: Post) {
+
+  const categorySlug =
+    breadcrumbs.length === 4
+      ? `/${cleanSlug(breadcrumbs[1].url)}/${cleanSlug(breadcrumbs[2].url)}`
+      : `/${cleanSlug(breadcrumbs[1].url)}`
+
+
   return (
-    <>
-      <section className="itju-center mb-10 mt-5 flex w-full overflow-hidden">
-        <div className="w-custom mb-10 flex w-full items-start justify-start">
-          <Breadcrumbs className="flex" breadcrumbs={breadcrumbs} />
+    <section className="w-full bg-white py-2">
+      <div className="mx-auto w-[70vw] px-0">
+        {/* Breadcrumbs */}
+
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+
+        {/* Categoría */}
+        {primary_category?.name && (
+          <Link href={`/categories${categorySlug}`} className="inline-block rounded-full text-black text-3xl  uppercase tracking-widest underline font-extrabold">
+            {primary_category.name}
+          </Link>
+        )}
+
+        {/* Título */}
+        <h1 className="mb-3 text-4xl text-start font-bold leading-tight text-gray-900 md:text-5xl">
+          {title}
+        </h1>
+
+        {excerpt && (
+          <>
+            <p className=" max-w-3xl text-lg text-gray-700">{excerpt}</p>
+          </>
+        )}
+        {/* Excerpt */}
+
+        {/* Autor y fecha */}
+        <div className="flex flex-col items-start md:items-start mb-3">
+          <div className="flex items-center">
+            <div className="relative h-10 w-10 overflow-hidden rounded-full">
+              <Image
+                src={
+                  author_avatar ||
+                  `https://api.dicebear.com/7.x/lorelei/svg?seed=${author_name || "default"}`
+                }
+                alt={author_name}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <p className="text-lg text-gray-500">{author_name}</p>
+          </div>
+
+          <div className="flex flex-row justify-center items-center gap-x-1 pl-2 mb-3">
+            <Clock className="h-4 w-4 text-gray-500" />
+            <p className="text-sm text-gray-500">
+              {formatDate("2025-07-09T17:39:00", {
+                includeTime: true,
+                uppercase: true,
+                withTimeZone: true
+              })}
+            </p>
+
+          </div>
+
+          <div className="flex space-x-4 justify-start items-center">
+            <a
+              href="#"
+              className="text-slate-800 hover:text-slate-600 transition-colors"
+              aria-label="Facebook"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className=""><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+            </a>
+            <a
+              href="#"
+              className="text-slate-800 hover:text-slate-600 transition-colors"
+              aria-label="Twitter"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </a>
+            <a
+              href="#"
+              className="text-slate-800 hover:text-slate-600 transition-colors"
+              aria-label="Instagram"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+            </a>
+            <a
+              href="#"
+              className="text-slate-800 hover:text-slate-600 transition-colors"
+              aria-label="YouTube"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+          </div>
         </div>
 
-        <Card className="w-custom bg-[var(--color-accent]) relative flex h-fit flex-row items-center justify-center border-2 bg-[var(--color-primary)] p-0">
-          <MagicCard className="m-0 w-full p-0">
-            <CardContent className="flex flex-col items-center justify-center space-y-5 bg-gradient-to-br from-neutral-200 to-white p-8">
-
-              {
-                primary_category?.name && (
-                  <div className="flex w-max flex-row items-center justify-between space-x-3 rounded-full border border-[var(--color-primary)] bg-[var(--color-primary-dark)] px-3 pr-3 transition duration-500 hover:border-[var(--color-primary)] hover:to-[var(--color-primary-semi-dark)]">
-                    <p className="text-zinc-200">{primary_category.name}</p>
-
-                  </div>
-                )
-              }
-              <BoxReveal duration={0.5}>
-                <h1 className="z-10 h-full whitespace-pre-wrap text-center leading-normal tracking-tighter text-black">
-                  {title}
-                </h1>
-              </BoxReveal>
-              <BoxReveal duration={0.7}>
-                <p>{excerpt}</p>
-              </BoxReveal>
-
-              <div className="flex flex-col items-center justify-center gap-3 lg:flex-row">
-
-                <div className="group-badge group mb-0 flex w-max flex-row items-center justify-between space-x-2 rounded-full border border-[var(--color-accent)] bg-gradient-to-br from-[var(--color-accent-dark)] to-[var(--color-primary-dark)] pl-2 pr-3 transition duration-500 hover:border-[var(--color-primary)] hover:to-[var(--color-primary-semi-dark)] lg:space-x-3">
-                  <div className="size-7 lg:size-10 relative mb-0 overflow-hidden rounded-full">
-                    <Image
-                      src={
-                        author_avatar ||
-                        `https://api.dicebear.com/7.x/lorelei/svg?seed=${author_name || "default"}`
-                      }
-                      alt={`Image of ${author_name}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="text-zinc-200 [.group-badge:hover_&]:text-white">{author_name}</p>
-                </div>
-
-                <div className="flex w-max flex-row items-center justify-between space-x-3 rounded-full border border-[var(--color-accent)] bg-gradient-to-bl from-[var(--color-accent-dark)] to-[var(--color-primary-dark)] px-3 pr-3 transition duration-500 hover:border-[var(--color-primary)] hover:to-[var(--color-primary-semi-dark)]">
-                  <p className="text-zinc-200">{formatDate(created_at)}</p>
-                </div>
-              </div>
-
-            </CardContent>
-            <BorderBeam />
-          </MagicCard>
-        </Card>
-      </section>
-    </>
-  )
+        {/* Imagen destacada */}
+        <div className="relative mb-6 h-[300px] w-full overflow-hidden rounded-lg md:h-[450px]">
+          <Image
+            src={featured_image || "https://imagenes.elpais.com/resizer/v2/H5RD3AOEDFACTM5YQLKCJTZ6TA.jpg?auth=5672d03482fe2f39ac03675dba3971044a0e73c753e2610fe3ec3bd1640aad5e&width=1200"} // reemplaza con tu imagen destacada real
+            alt={title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export function HeroCategory ({ name, description, breadcrumbs }: Category) {
+export function HeroCategory({ name, description, breadcrumbs }: Category) {
   return (
     <>
       <section className="itju-center mb-20 mt-5 flex w-full overflow-hidden">
