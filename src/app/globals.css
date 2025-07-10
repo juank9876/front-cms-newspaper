@@ -132,12 +132,13 @@ body {
   }
 
   h4, h5 {
-    @apply font-bold text-xl
+    @apply font-bold text-xl font-serif
   }
 
   p, li, span {
-    @apply text-base lg:text-xl leading-relaxed py-1 text-[#4a4a4a] hover:text-gray-800 transition duration-500
+    @apply text-base lg:text-lg leading-normal py-1 text-[#4a4a4a] hover:text-gray-800 transition duration-500
   }
+
 }
 
 @layer utilities {
@@ -197,7 +198,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--color-accent);
+
   border-radius: 4px;
 }
 

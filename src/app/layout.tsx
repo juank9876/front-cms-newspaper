@@ -1,4 +1,4 @@
-import { Inter, Onest, Poppins } from "next/font/google";
+import { Inter, Merriweather, Onest, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/juankui/header";
 import { Footer } from "@/components/juankui/footer";
@@ -15,6 +15,7 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter"
 });
+
 
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

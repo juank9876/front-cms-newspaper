@@ -38,6 +38,8 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
         const category = await fetchCategoryById(categoryId)
 
         {/*Si hay subcategoria, comprobar*/ }
+
+        /*
         if (slugArray.length === 2) {
             if (cleanSlug(category.breadcrumbs[1].url) !== slugArray[0]) {
 
@@ -45,36 +47,37 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
             }
 
         }
+            */
         return { type: 'category', category }
     }
-
 
     if (postId) {
 
         const post = (await fetchArticleById(postId)).post
+        /*
         if (slugArray.length === 3) {
-            console.log('aqui 3');
-            console.log(slugArray);
+            //console.log('aqui 3');
+            //console.log(slugArray);
             if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0] || cleanSlug(post.breadcrumbs[2].url) !== slugArray[1]) {
-                console.log(post.breadcrumbs[1].url, slugArray[0], post.breadcrumbs[2].url, slugArray[1])
-                return notFound()
-            } else
-                return { type: 'post', post }
-
-        }
-        if (slugArray.length === 2) {
-            console.log('aqui 2');
-            console.log(slugArray)
-
-            if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0]) {
-                console.log(post.breadcrumbs[1].url, slugArray[0]);
-
-                return notFound()
+                    //console.log(post.breadcrumbs[1].url, slugArray[0], post.breadcrumbs[2].url, slugArray[1])
+                    return notFound()
+                } else
+                    return { type: 'post', post }
+    
             }
-        }
+            if (slugArray.length === 2) {
+                //console.log('aqui 2');
+                //console.log(slugArray)
+    
+                if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0]) {
+                    //console.log(post.breadcrumbs[1].url, slugArray[0]);
+    
+                    return notFound()
+                }
+            }
+            */
         return { type: 'post', post }
     }
-
     notFound()
 }
 

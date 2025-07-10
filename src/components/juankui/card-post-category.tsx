@@ -35,7 +35,7 @@ export function CardPostCategory({ post, category, isImgBig = false, hideImage =
               <span>·</span>
               <span className='text-sm'>{post.author_name.toUpperCase()}</span>
             </div>
-            <p className="line-clamp-3 text-sm text-slate-600 mb-2 text-left font-serif">{post.excerpt}</p>
+            <p className="line-clamp-3 text-sm text-slate-600 mb-2 text-left">{post.excerpt}</p>
           </CardContent>
         </Link>
       </div>
@@ -93,7 +93,7 @@ export function CardPostRow({ post, category }: { post: Post, category: Category
           <span>·</span>
           <span className='text-sm'>{post.author_name.toUpperCase()}</span>
         </div>
-        <p className="line-clamp-3 text-sm text-slate-600 text-left font-serif">{post.excerpt}</p>
+        <p className="line-clamp-3 text-sm text-slate-600 text-left">{post.excerpt}</p>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
-import { Category, NavItemType, Page, Post, PostResponse, SiteSettings } from "@/types/types";
+import { Author, Category, NavItemType, Page, Post, PostResponse, SiteSettings } from "@/types/types";
 
-type MethodType = "articles" | "article" | "pages" | "page" | "category" | "categories" | "menu" | "site-settings";
+type MethodType = "articles" | "article" | "pages" | "page" | "category" | "categories" | "menu" | "site-settings" | "authors" | "author";
 
 interface FetcherParams {
   method: MethodType;
@@ -16,7 +16,7 @@ export interface ResponseInterface<T = unknown> {
 export async function fetcher<T>({ method, id }: FetcherParams): Promise<T> {
   const baseUrl = `https://intercms.dev/api/v2/data.php`
   const url = baseUrl + `?method=${method}` + `&api_key=${process.env.API_KEY}` + `&project_id=${process.env.PROJECT_ID}` + (id ? `&id=${id}` : ``)
-  
+
   if (method === "page" && id == undefined) {
     console.log("ID is required for method 'page'");
   }
@@ -67,3 +67,11 @@ export async function fetchMenu(): Promise<NavItemType[]> {
 export async function fetchSiteSettings() {
   return fetcher<SiteSettings>({ method: "site-settings" });
 }
+export async function fetchAuthors() {
+  return fetcher<Author[]>({ method: "authors" });
+}
+
+export async function fetchAuthorById(id: string): Promise<Author> {
+  return fetcher<Author>({ method: "author", id });
+}
+

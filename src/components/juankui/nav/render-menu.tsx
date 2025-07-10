@@ -102,21 +102,7 @@ export function RenderMenu({ normalizedItems, categoriesItems }: { normalizedIte
               <div className="absolute left-0 pr-5 top-full w-fit bg-white border border-slate-200 z-20 hidden group-hover:block">
                 <ul className="py-0">
                   {categoriesItems.map((category) => (
-                    <Fragment key={category.id}>
-                      {
-                        category.child_categories_count === 0 && category.parent_id == null && (
-                          <ListItem title={capitalize(category.name)} href={`/categories/${category.slug}`} />
-                        )
-                      }
-                      {
-                        category.parent_id != null && (
-                          <Fragment key={category.id}>
-
-                            <ListItem isChild title={capitalize(category.name!)} href={`/categories/${category.parent_slug}/${category.slug}`} />
-                          </Fragment>
-                        )
-                      }
-                    </Fragment>
+                    <ListItem key={category.id} title={capitalize(category.name)} href={`/categories/${category.slug}`} />
                   ))}
                 </ul>
               </div>

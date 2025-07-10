@@ -1,8 +1,9 @@
 interface SocialLinks {
-  facebook: string;
-  twitter: string;
-  instagram: string;
-  youtube: string;
+  facebook?: string;
+  twitter?: string;
+  instagram?: string;
+  youtube?: string;
+  linkedin?: string;
 }
 export interface SiteSettings {
   id: string
@@ -26,6 +27,24 @@ export interface SiteSettings {
   created_at: string
   updated_at: string
   schema_data: unknown[]
+}
+
+export interface Author {
+  id: string;
+  project_id: string;
+  name: string;
+  slug: string;
+  email: string;
+  bio: string;
+  avatar: string;
+  social_links: SocialLinks
+  meta_title: string;
+  meta_description: string;
+  schema_data: unknown | null;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  post_count: string;
 }
 
 export interface NavItemType {
