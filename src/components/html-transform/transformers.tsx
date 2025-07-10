@@ -156,7 +156,7 @@ export function transformImg(el: Element) {
 export function transformH2(el: Element, options: HTMLReactParserOptions) {
   return (
     <div className='flex flex-col space-y-5 pb-3 pt-10'>
-      <h2>
+      <h2 className='pt-10 pb-3'>
         {domToReact(el.children as DOMNode[], options)}
       </h2>
     </div>
@@ -169,7 +169,7 @@ export function transformH3(el: Element, options: HTMLReactParserOptions) {
 
   return (
     <div className=' flex flex-row items-center justify-start'>
-      <h3>
+      <h3 className='pt-10 pb-3'>
         {domToReact(el.children as DOMNode[], options)}
       </h3>
     </div>
