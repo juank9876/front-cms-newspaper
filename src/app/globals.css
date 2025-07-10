@@ -132,13 +132,16 @@ body {
   }
 
   h4, h5 {
-    @apply font-bold text-xl font-serif
+    @apply font-bold text-xl mt-2
   }
 
   p, li, span {
     @apply text-base lg:text-lg leading-normal py-1 text-[#4a4a4a] hover:text-gray-800 transition duration-500
   }
 
+  h1, h2, h3, h4, h5 {
+    @apply mt-5 mb-2
+  }
 }
 
 @layer utilities {

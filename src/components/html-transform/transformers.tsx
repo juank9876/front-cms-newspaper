@@ -168,8 +168,8 @@ export function transformH3(el: Element, options: HTMLReactParserOptions) {
   //const RandomIcon = icons[Math.floor(Math.random() * icons.length)]
 
   return (
-    <div className='mt-8 flex flex-row items-center justify-start space-x-3'>
-      <h3 className='text-accent'>
+    <div className=' flex flex-row items-center justify-start'>
+      <h3>
         {domToReact(el.children as DOMNode[], options)}
       </h3>
     </div>
