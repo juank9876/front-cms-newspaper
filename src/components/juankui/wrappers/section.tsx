@@ -23,7 +23,7 @@ export function Section({ children, className }: SectionProps) {
     <section className={`${className} relative flex w-full items-center justify-center`}>
       {isParticles && <ParticlesFull />}
 
-      <article className="gap-15 flex flex-col w-[90vw] items-stretch justify-center rounded-lg lg:w-[60vw] lg:flex-row">
+      <article className="gap-15 flex flex-col w-[90vw] items-stretch justify-center rounded-lg lg:w-[70vw] lg:flex-row">
         <ChildrenDiv />
         <div className="hidden h-auto w-px self-stretch bg-[var(--color-secondary)] lg:block" />
         <AsideList />

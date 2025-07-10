@@ -5,7 +5,7 @@ import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-function NavigationMenu ({
+function NavigationMenu({
   className,
   children,
   viewport = true,
@@ -29,7 +29,7 @@ function NavigationMenu ({
   )
 }
 
-function NavigationMenuList ({
+function NavigationMenuList({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
@@ -45,7 +45,7 @@ function NavigationMenuList ({
   )
 }
 
-function NavigationMenuItem ({
+function NavigationMenuItem({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
@@ -62,7 +62,7 @@ const navigationMenuTriggerStyle = cva(
   "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground outline-none transition-[color,box-shadow]"
 )
 
-function NavigationMenuTrigger ({
+function NavigationMenuTrigger({
   //className,
   children,
   ...props
@@ -82,7 +82,7 @@ function NavigationMenuTrigger ({
   )
 }
 
-function NavigationMenuContent ({
+function NavigationMenuContent({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
@@ -99,7 +99,7 @@ function NavigationMenuContent ({
   )
 }
 
-function NavigationMenuViewport ({
+function NavigationMenuViewport({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
@@ -121,7 +121,7 @@ function NavigationMenuViewport ({
   )
 }
 
-function NavigationMenuLink ({
+function NavigationMenuLink({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
@@ -129,7 +129,7 @@ function NavigationMenuLink ({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "hover:bg-[var(--color-accent)] hover:text-white flex flex-col gap-1 rounded-sm p-2 text-sm transition-none outline-none",
+        "flex flex-col gap-1 rounded-sm p-2 text-sm transition-none outline-none",
         className
       )}
       {...props}
@@ -137,7 +137,7 @@ function NavigationMenuLink ({
   )
 }
 
-function NavigationMenuIndicator ({
+function NavigationMenuIndicator({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>) {

@@ -27,8 +27,8 @@ export async function Header() {
     <header className="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-slate-200">
       {/* Main Header */}
       <div className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="mx-auto w-[70vw]">
+          <div className="flex items-center justify-between h-fit">
             {/* Mobile Menu Button */}
             <div className="lg:hidden">
               <NavMobile {...navProps} />
@@ -76,8 +76,8 @@ export async function Header() {
             </span>
             <div className="flex-1 overflow-hidden">
               <div className="animate-marquee whitespace-nowrap">
-                <span className="text-sm">
-                  Breaking news: Stay informed with the latest updates from around the world.
+                <span className="text-sm text-white">
+                  <strong>Breaking news:</strong> Stay informed with the latest updates from around the world.
                 </span>
               </div>
             </div>

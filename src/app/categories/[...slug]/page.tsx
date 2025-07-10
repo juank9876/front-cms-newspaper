@@ -6,7 +6,7 @@ import { capitalize } from '@/utils/capitalize'
 import { PrePost } from '@/components/juankui/pre-rendered/pre-post'
 import HtmlRenderer from '@/components/html-transform/html-renderer'
 import { PreCategory } from '@/components/juankui/pre-rendered/pre-category'
-import { CardPostCategory } from '@/components/juankui/card-post-category'
+import { CardPostCategory, CardPostRow } from '@/components/juankui/card-post-category'
 import { Category, Post } from '@/types/types'
 
 /** Decide si es un post o categoría y obtiene los datos */
@@ -52,8 +52,6 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
     if (postId) {
 
         const post = (await fetchArticleById(postId)).post
-
-
         if (slugArray.length === 3) {
             console.log('aqui 3');
             console.log(slugArray);
@@ -128,15 +126,35 @@ export default async function Page({
     const posts = category?.posts || []
 
     return (
-        <PreCategory category={category} className="flex w-full flex-wrap items-center justify-center space-y-5 lg:space-x-5">
+        <PreCategory category={category} className="w-full max-w-6xl mx-auto px-2 md:px-4">
             {posts.length === 0 ? (
                 <span className="text-muted rounded-lg bg-[var(--color-accent)] px-5 py-10 text-xl italic">
                     Oops! No posts available in this category.
                 </span>
             ) : (
-                posts.map((post) => (
-                    <CardPostCategory key={post.id} post={post} category={category} />
-                ))
+                <div className="w-full flex flex-col gap-8 md:gap-10">
+                    {/* Grid principal: noticia principal + secundarias */}
+                    <div className="w-full flex flex-col lg:flex-row gap-4 md:gap-8">
+                        {/* Noticia principal */}
+                        <div className="min-w-0 flex-1 lg:basis-0 lg:grow">
+                            <CardPostCategory key={posts[0].id} post={posts[0]} category={category} isImgBig={true} />
+                        </div>
+                        {/* Secundarias (máximo 2) */}
+                        <div className="flex flex-col space-y-4 md:space-y-6 lg:basis-[340px] lg:shrink-0 w-full">
+                            {posts.slice(1, 3).map((post) => (
+                                <CardPostCategory key={post.id} post={post} category={category} isImgBig={false} hideImage={true} />
+                            ))}
+                        </div>
+                    </div>
+                    {/* Fila inferior: más noticias en grid */}
+                    {posts.length > 3 && (
+                        <div className="w-full flex flex-col border-t pt-6 md:pt-8 gap-6 md:gap-8">
+                            {posts.slice(3).map((post) => (
+                                <CardPostRow key={post.id} post={post} category={category} />
+                            ))}
+                        </div>
+                    )}
+                </div>
             )}
         </PreCategory>
     )

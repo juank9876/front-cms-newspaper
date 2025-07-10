@@ -27,30 +27,29 @@ export function RecentArticles({ articles, className }: { articles: Post[], clas
               `/categories${article.breadcrumbs[1].url}${article.breadcrumbs[3].url.slice(1)}` :
               article.breadcrumbs.length === 2 ?
                 `/categories${article.breadcrumbs[1].url}`
-
                 : `/categories${article.breadcrumbs[2].url}`
 
           return (
             <li key={article.id || index}>
               <Link
                 href={`${url}` || `/categories/single/${article.slug}`}
-                className="group relative flex w-full flex-col overflow-hidden transition-transform duration-300 hover:scale-105"
+                className="group flex w-full items-center gap-4 py-3 px-1 hover:bg-slate-50 overflow-hidden flex-row md:flex-row"
               >
                 {/* Contenedor de imagen */}
                 {article.featured_image && (
-                  <div className="relative h-[180px] w-full">
+                  <div className="relative min-w-[90px] min-h-[60px] w-[90px] h-[60px] md:w-[110px] md:h-[70px] overflow-hidden">
                     <Image
                       src={article.featured_image}
                       alt={article.title}
                       fill
-                      className="duration-400 object-cover transition group-hover:scale-105"
+                      className="object-cover"
                     />
                   </div>
                 )}
                 {/* Contenido textual */}
-                <div className="flex flex-col p-3">
-                  <h4 className="line-clamp-2 text-base font-semibold">{article.title}</h4>
-                  <p className="text-muted-foreground mt-1 text-sm">{formatDate(article.created_at)}</p>
+                <div className="flex flex-1 flex-col justify-center min-w-0">
+                  <h4 className="line-clamp-2 text-base md:text-lg font-bold text-slate-900 group-hover:underline group-hover:decoration-[var(--color-black,red)] group-hover:decoration-2 font-sans text-left">{article.title}</h4>
+                  <p className="text-xs text-slate-400 mt-1">{formatDate(article.created_at)}</p>
                 </div>
               </Link>
             </li>

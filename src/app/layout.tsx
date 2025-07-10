@@ -8,16 +8,7 @@ import { hexToOklch } from "@/utils/hex-to-oklch";
 import { Providers } from "./providers";
 import Head from "next/head";
 
-const onest = Onest({
-  variable: "--font-onest",
-  subsets: ["latin"],
-});
 
-const poppins = Poppins({
-  weight: "400", // o ["400", "700"], según necesites
-  subsets: ["latin"],
-  variable: "--font-poppins"
-});
 
 const inter = Inter({
   weight: "400", // o ["400", "700"], según necesites
@@ -42,7 +33,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <ViewTransitions>
-      <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
+      <html lang="en" suppressHydrationWarning className={`${inter.variable} `}>
         <Head>
           <title>{settings.meta_title}</title>
           <meta name="description" content={settings.meta_description} />

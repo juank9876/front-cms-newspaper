@@ -9,6 +9,7 @@ import { Card, CardContent } from "../ui/card"
 import { MagicCard } from "../magicui/magic-card"
 import { Breadcrumbs } from "./breadcrumbs"
 import { Link } from "./optionals/link"
+import { DivAccent } from "./aside-items/div-accent"
 
 
 
@@ -134,7 +135,7 @@ export function HeroPost({
               className="text-slate-800 hover:text-slate-600 transition-colors"
               aria-label="Facebook"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className=""><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className=""><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
             </a>
             <a
               href="#"
@@ -154,7 +155,7 @@ export function HeroPost({
               className="text-slate-800 hover:text-slate-600 transition-colors"
               aria-label="Instagram"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
             </a>
             <a
               href="#"
@@ -189,26 +190,21 @@ export function HeroPost({
 
 export function HeroCategory({ name, description, breadcrumbs }: Category) {
   return (
-    <>
-      <section className="itju-center mb-20 mt-5 flex w-full overflow-hidden">
-        <div className="w-custom flex w-full items-start justify-start">
-          <Breadcrumbs className="flex" breadcrumbs={breadcrumbs} />
+    <section className="w-full bg-white pb-8 flex flex-col items-center justify-center">
+      <div className=" mb-2 w-[70vw]">
+        <Breadcrumbs className="text-xs text-slate-500" breadcrumbs={breadcrumbs} />
+      </div>
+      <div className="w-full max-w-3xl flex flex-col items-center justify-center pt-5">
+        <div className="flex flex-col items-center justify-center w-full">
+          <h1 className="text-4xl md:text-5xl font-serif font-extrabold uppercase tracking-widest text-center mb-2">
+            {name}
+          </h1>
+          <p className="text-lg md:text-xl text-slate-700 text-center max-w-2xl mb-2">
+            {description}
+          </p>
         </div>
-        <Card className="bg-[var(--color-accent]) w-custom relative flex h-fit flex-col items-center justify-center p-0">
-          <MagicCard className="m-0 w-full p-0">
-            <CardContent className="flex flex-col items-center justify-center p-10">
-              <BoxReveal duration={0.5}>
-                <h1 className="z-10 h-full text-center font-bold leading-normal">
-                  {name}
-                </h1>
-              </BoxReveal>
-              <BoxReveal duration={0.7}>
-                <p className="text-center text-2xl">{description}</p>
-              </BoxReveal>
-            </CardContent>
-          </MagicCard>
-        </Card>
-      </section>
-    </>
+      </div>
+      <DivAccent />
+    </section>
   )
 }
