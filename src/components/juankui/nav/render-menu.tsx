@@ -18,15 +18,16 @@ type ListItemProps = {
   className?: string
   isChild?: boolean
   childCategories?: Category[]
+  parentSlug?: string
 }
 
-function ListItem({ title, href, children, className, isChild = false, childCategories }: ListItemProps) {
+function ListItem({ title, href, children, className, isChild = false, childCategories, parentSlug }: ListItemProps) {
   const hasSubcategories = childCategories && childCategories.length > 0;
   return (
     <li className={hasSubcategories ? 'group relative' : ''}>
       <NavigationMenuLink asChild>
         <Link
-          href={href}
+          href={parentSlug ? `${parentSlug}/${href}` : '/categories/' + href}
           className={`flex items-start px-4 py-2 text-base font-bold uppercase tracking-wide text-slate-900 hover:text-red-600 hover:underline hover:underline-offset-8 transition-colors duration-150 ${isChild ? 'pl-8 text-sm' : ''}`}
         >
           {title}
@@ -102,7 +103,12 @@ export function RenderMenu({ normalizedItems, categoriesItems }: { normalizedIte
               <div className="absolute left-0 pr-5 top-full w-fit bg-white border border-slate-200 z-20 hidden group-hover:block">
                 <ul className="py-0">
                   {categoriesItems.map((category) => (
-                    <ListItem key={category.id} title={capitalize(category.name)} href={`/categories/${category.slug}`} />
+                    <ListItem
+                      key={category.id}
+                      title={capitalize(category.name)}
+                      href={`${category.slug}`}
+                      parentSlug={category.parent_slug!}
+                    />
                   ))}
                 </ul>
               </div>

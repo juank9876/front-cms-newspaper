@@ -1,6 +1,6 @@
 // app/[...slug]/page.tsx
 import { notFound } from 'next/navigation'
-import { fetchArticleById, fetchCategoryById } from '@/api-fetcher/fetcher'
+import { fetchArticleById, fetchCategoryById, fetchPermalink } from '@/api-fetcher/fetcher'
 import { getPostSlugToIdMap, getCategorySlugToIdMap, cleanSlug } from '@/lib/utils'
 import { capitalize } from '@/utils/capitalize'
 import { PrePost } from '@/components/juankui/pre-rendered/pre-post'
@@ -32,50 +32,40 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
     const categoryId = categoryMap[categorySlug]
     const postId = postMap[postSlug]
+    const urlSegments = slugArray[0] === "categories" ? slugArray.slice(1) : slugArray;
+    let url = "/" + urlSegments.join("/");
+    if (!url.endsWith("/")) {
+        url += "/";
+    }
 
     if (categoryId) {
-
         const category = await fetchCategoryById(categoryId)
+        console.log(category)
 
-        {/*Si hay subcategoria, comprobar*/ }
+        const permalinkData = await fetchPermalink(categoryId, "category")
+        const permalink = permalinkData.permalink
 
-        /*
-        if (slugArray.length === 2) {
-            if (cleanSlug(category.breadcrumbs[1].url) !== slugArray[0]) {
+        console.log('permalink', permalink)
+        console.log('url', url)
 
-                return notFound()
-            }
-
+        if (permalink !== url) {
+            notFound()
         }
-            */
+
         return { type: 'category', category }
     }
 
-    if (postId) {
 
+    if (postId) {
         const post = (await fetchArticleById(postId)).post
-        /*
-        if (slugArray.length === 3) {
-            //console.log('aqui 3');
-            //console.log(slugArray);
-            if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0] || cleanSlug(post.breadcrumbs[2].url) !== slugArray[1]) {
-                    //console.log(post.breadcrumbs[1].url, slugArray[0], post.breadcrumbs[2].url, slugArray[1])
-                    return notFound()
-                } else
-                    return { type: 'post', post }
-    
-            }
-            if (slugArray.length === 2) {
-                //console.log('aqui 2');
-                //console.log(slugArray)
-    
-                if (cleanSlug(post.breadcrumbs[1].url) !== slugArray[0]) {
-                    //console.log(post.breadcrumbs[1].url, slugArray[0]);
-    
-                    return notFound()
-                }
-            }
-            */
+
+        const permalinkData = await fetchPermalink(postId, "post")
+        const permalink = permalinkData.permalink
+
+
+        if (permalink !== url) {
+            notFound()
+        }
         return { type: 'post', post }
     }
     notFound()
