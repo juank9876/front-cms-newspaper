@@ -1,4 +1,4 @@
-import { HeroHomePage } from '@/components/juankui/hero'
+import { HeroHomePage } from '@/components/juankui/hero/hero-home'
 import { MainWrapper } from '@/components/juankui/wrappers/main-wrapper'
 //import { capitalize } from '@/utils/capitalize'
 import { ReactNode } from 'react'
@@ -13,7 +13,7 @@ interface HomePage {
   settings: SiteSettings
 }
 
-export function PreHomePage ({ children, settings }: HomePage) {
+export function PreHomePage({ children, settings }: HomePage) {
   return (
     <MainWrapper>
       {isParticles && <ParticlesFull />}

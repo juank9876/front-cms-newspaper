@@ -1,4 +1,4 @@
-import { HeroPost } from '@/components/juankui/hero'
+import { HeroPost } from '@/components/juankui/hero/hero-post'
 import { MainWrapper } from '@/components/juankui/wrappers/main-wrapper'
 import { Post } from '@/types/types'
 import { ReactNode } from 'react'

@@ -37,6 +37,7 @@ export async function fetcher<T>({ method, id, type }: FetcherParams): Promise<T
     }
 
   } catch (error) {
+    console.error(url, method)
     console.error("Error fetching data:", error);
     return undefined as T;
   }

@@ -116,14 +116,6 @@ export function transformContainer(el: Element, options: HTMLReactParserOptions)
   )
 }
 
-//Elementos HTML
-export function transformForm(el: Element, options: HTMLReactParserOptions) {
-  return (
-    <form className="flex flex-row border border-gray-700">
-      {domToReact(el.children as DOMNode[], options)}
-    </form>
-  )
-}
 
 export function transformButton(el: Element, options: HTMLReactParserOptions) {
   return (
@@ -208,6 +200,36 @@ export function transformPre(el: Element, options: HTMLReactParserOptions) {
   );
 }
 
+export function transformForm(el: Element, options: HTMLReactParserOptions) {
+  return (
+    <form className="flex flex-col border border-gray-700 rounded-lg p-5 gap-y-3 justify-between">
+      {domToReact(el.children as DOMNode[], options)}
+    </form>
+  )
+}
+
+export function transformInput(el: Element, options: HTMLReactParserOptions) {
+  return (
+    <input
+      id={el.attribs.id || ''}
+      name={el.attribs.name || ''}
+      type={el.attribs.type || 'text'}
+      placeholder={el.attribs.placeholder || ''}
+      className="w-full p-2 rounded-md border border-gray-700"
+
+    />
+  )
+}
+export function transformTextarea(el: Element, options: HTMLReactParserOptions) {
+  return (
+    <textarea
+      id={el.attribs.id || ''}
+      name={el.attribs.name || ''}
+      placeholder={el.attribs.placeholder || ''}
+      className="w-full p-2 rounded-md border border-gray-700"
+    />
+  )
+}
 export function transformCode(el: Element) {
 
   const getText = (nodes: DOMNode[]): string =>

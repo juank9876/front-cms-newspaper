@@ -17,6 +17,8 @@ import {
   transformP,
   transformForm,
   transformPre,
+  transformTextarea,
+  transformInput,
 } from './transformers'
 import type { JSX } from 'react'
 
@@ -54,6 +56,8 @@ const rules: TransformerRule[] = [
   { tagName: 'code', transformer: transformCode },
   { tagName: 'pre', transformer: transformPre },
   { tagName: 'strong', transformer: transformStrong },
+  { tagName: 'input', transformer: transformInput },
+  { tagName: 'textarea', transformer: transformTextarea },
 ]
 
 export function getTransformer(el: Element, options: HTMLReactParserOptions) {

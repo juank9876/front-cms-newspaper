@@ -14,6 +14,14 @@ const inter = Inter({
   weight: "400", // o ["400", "700"], según necesites
   subsets: ["latin"],
   variable: "--font-inter"
+
+});
+
+const onest = Onest({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // o ["400", "700"], según necesites
+  subsets: ["latin"],
+  variable: "--font-onest"
+
 });
 
 
@@ -34,7 +42,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <ViewTransitions>
-      <html lang="en" suppressHydrationWarning className={`${inter.variable} `}>
+      <html lang="en" suppressHydrationWarning className={`${inter.variable} ${onest.variable}`}>
         <Head>
           <title>{settings.meta_title}</title>
           <meta name="description" content={settings.meta_description} />

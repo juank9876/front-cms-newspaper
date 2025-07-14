@@ -1,4 +1,4 @@
-import { HeroPage } from '@/components/juankui/hero'
+import { HeroPage } from '@/components/juankui/hero/hero-page'
 import { MainWrapper } from '@/components/juankui/wrappers/main-wrapper'
 import { ReactNode } from 'react'
 import { Section } from '../wrappers/section'
@@ -6,7 +6,7 @@ import { Page } from '@/types/types'
 import { ParticlesFull } from '../particles'
 import { isParticles } from '@/config/options'
 
-export function PrePage ({ children, page }: { children: ReactNode, page: Page }) {
+export function PrePage({ children, page }: { children: ReactNode, page: Page }) {
   return (
     <MainWrapper>
       {isParticles && <ParticlesFull />}

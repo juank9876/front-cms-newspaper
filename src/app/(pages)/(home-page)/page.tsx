@@ -8,67 +8,22 @@ import { notFound } from 'next/navigation'
 //parse, 
 
 
-async function getHomePageFromParams () {
+async function getHomePageFromParams() {
   const map = await getPageSlugToIdMap();
-  const slug = "";
-  const id = map[slug];
+  let slug = "";
+  let id = map[slug];
 
-  if (!id) return notFound()
+  if (!id) {
+    slug = "home"
+    id = map[slug]
+  }
 
   const homePage = await fetchPageById(id)
   return homePage
 }
 
-export default async function Home () {
-  /*
-  const options: HTMLReactParserOptions = {
-    replace: (domNode: DOMNode) => {
-      if (domNode.type === 'tag') {
-        const el = domNode as Element
+export default async function Home() {
 
-        // Modificar "div"
-        if (el.attribs?.class === 'card') {
-          return (
-            <div className="rounded-lg border border-yellow-400 px-3 py-5">
-              {domToReact(el.children as DOMNode[], options)}
-            </div>
-          )
-        }
-
-        if (el.attribs?.class?.includes('text-element')) {
-          return (
-            <div className="py-5">
-              {domToReact(el.children as DOMNode[], options)}
-            </div>
-          )
-        }
-
-        // Reemplazar "row"
-        if (el.attribs?.class?.includes('row')) {
-          return (
-            <div className="flex flex-1 items-center justify-between gap-4">
-              {domToReact(el.children as DOMNode[], options)}
-            </div>
-          )
-        }
-
-        // Reemplazar botón Bootstrap
-        if (el.attribs?.class?.includes('btn')) {
-          return (
-            <a
-              href={el.attribs.href || '#'}
-              className="flex w-fit rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-            >
-              {domToReact(el.children as DOMNode[], options)}
-            </a>
-          )
-        }
-      }
-
-      return undefined
-    },
-  }
-*/
 
   const page = await getHomePageFromParams()
   const settings = await fetchSiteSettings()
@@ -82,5 +37,11 @@ export default async function Home () {
     </PreHomePage>
 
   )
-  return notFound()
+  return (
+    <PreHomePage
+      settings={settings}
+    >
+      <></>
+    </PreHomePage>
+  )
 }
