@@ -11,7 +11,7 @@ import Head from "next/head";
 
 
 const inter = Inter({
-  weight: "400", // o ["400", "700"], según necesites
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // o ["400", "700"], según necesites
   subsets: ["latin"],
   variable: "--font-inter"
 

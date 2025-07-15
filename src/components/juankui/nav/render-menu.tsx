@@ -27,7 +27,7 @@ function ListItem({ title, href, children, className, isChild = false, childCate
     <li className={hasSubcategories ? 'group relative' : ''}>
       <NavigationMenuLink asChild>
         <Link
-          href={parentSlug ? `${parentSlug}/${href}` : '/categories/' + href}
+          href={parentSlug ? `/categories/${parentSlug}/${href}` : '/categories/' + href}
           className={`flex items-start px-4 py-2 text-base font-bold uppercase tracking-wide text-slate-900 hover:text-red-600 hover:underline hover:underline-offset-8 transition-colors duration-150 ${isChild ? 'pl-8 text-sm' : ''}`}
         >
           {title}

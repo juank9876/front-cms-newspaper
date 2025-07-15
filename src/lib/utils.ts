@@ -1,4 +1,4 @@
-import { fetchArticles, fetchCategories, fetchPages } from "@/api-fetcher/fetcher"
+import { fetchArticles, fetchCategories, fetchPages, fetchPermalink } from "@/api-fetcher/fetcher"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -94,4 +94,18 @@ export async function getPostSlugToIdMap(): Promise<SlugToIdMap> {
 
 export function cleanSlug(slug: string) {
   return slug.replace(/^\/+|\/+$/g, '')
+}
+
+export async function permalinkPost(id: string): Promise<string> {
+  const link = await fetchPermalink(id, "post")
+  const url = '/categories' + link.permalink
+
+  return url
+}
+
+export async function permalinkCategory(id: string): Promise<string> {
+  const link = await fetchPermalink(id, "category")
+  const url = '/categories/' + link.permalink
+
+  return url
 }

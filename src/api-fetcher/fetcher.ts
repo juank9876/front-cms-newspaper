@@ -1,11 +1,12 @@
 import { Author, Category, NavItemType, Page, PermalinkData, Post, PostResponse, SiteSettings } from "@/types/types";
 
-type MethodType = "articles" | "article" | "pages" | "page" | "category" | "categories" | "menu" | "site-settings" | "authors" | "author" | "permalink";
+type MethodType = "articles" | "article" | "pages" | "page" | "category" | "categories" | "menu" | "site-settings" | "authors" | "author" | "permalink" | "category-posts";
 
 interface FetcherParams {
   method: MethodType;
   id?: string
   type?: string
+  category_id?: string
 }
 
 export interface ResponseInterface<T = unknown> {
@@ -14,9 +15,13 @@ export interface ResponseInterface<T = unknown> {
   data: T // Puedes ajustar el tipo según lo que esperes
 }
 
-export async function fetcher<T>({ method, id, type }: FetcherParams): Promise<T> {
+export async function fetcher<T>({ method, id, type, category_id }: FetcherParams): Promise<T> {
   const baseUrl = `https://intercms.dev/api/v2/data.php`
-  const url = baseUrl + `?method=${method}` + `&api_key=${process.env.API_KEY}` + `&project_id=${process.env.PROJECT_ID}` + (id ? `&id=${id}` : ``) + (type ? `&type=${type}` : ``)
+  const url = baseUrl + `?method=${method}` + `&api_key=${process.env.API_KEY}` + `&project_id=${process.env.PROJECT_ID}` + (id ? `&id=${id}` : ``) + (type ? `&type=${type}` : ``) + (category_id ? `&category_id=${category_id}` : ``)
+
+  if (method === "category-posts") {
+    console.log(url)
+  }
 
   if (method === "page" && id == undefined) {
     console.log("ID is required for method 'page'");
@@ -80,4 +85,12 @@ export async function fetchAuthorById(id: string): Promise<Author> {
 type PermalinkType = "category" | "post"
 export async function fetchPermalink(id: string, type: PermalinkType): Promise<PermalinkData> {
   return fetcher<PermalinkData>({ method: "permalink", id, type });
+}
+
+interface CategoryPosts {
+  category: Category
+  posts: Post[]
+}
+export async function fetchCategoryPosts(id: string): Promise<CategoryPosts> {
+  return fetcher<CategoryPosts>({ method: "category-posts", category_id: id });
 }
