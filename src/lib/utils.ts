@@ -109,3 +109,19 @@ export async function permalinkCategory(id: string): Promise<string> {
 
   return url
 }
+
+export function isNewArticle(createdAt: string | Date): boolean {
+  const fechaCreacion = new Date(createdAt);
+  const ahora = new Date();
+  const diferenciaMs = ahora.getTime() - fechaCreacion.getTime();
+  const dias = diferenciaMs / (1000 * 60 * 60 * 24);
+  return dias < 30;
+}
+
+export function isLiveArticle(createdAt: string | Date): boolean {
+  const fechaCreacion = new Date(createdAt);
+  const ahora = new Date();
+  const diferenciaMs = ahora.getTime() - fechaCreacion.getTime();
+  const dias = diferenciaMs / (1000 * 60 * 60 * 24);
+  return dias < 7;
+}

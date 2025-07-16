@@ -1,13 +1,13 @@
 import { Inter, Merriweather, Onest, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/juankui/header";
+import { Header } from "@/components/juankui/header/header";
 import { Footer } from "@/components/juankui/footer";
 import { fetchSiteSettings } from "@/api-fetcher/fetcher";
 import { ViewTransitions } from 'next-view-transitions'
 import { hexToOklch } from "@/utils/hex-to-oklch";
 import { Providers } from "./providers";
 import Head from "next/head";
-
+import { Html } from "next/document";
 
 
 const inter = Inter({
@@ -48,6 +48,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <meta name="description" content={settings.meta_description} />
           {/* puedes usar settings.favicon, site_logo, etc */}
           <link rel="icon" href={settings.favicon || "/vercel.svg"} />
+          <link
+            rel="stylesheet"
+            href="https://intercms.dev/phpagebuilder/themes/bootstrap/public/css/style.css"
+          />
         </Head>
         <body
           style={{

@@ -139,9 +139,13 @@ export async function Footer({ settings }: { settings: SiteSettings }) {
                     className="h-8 w-auto"
                   />
                 )}
-                <h3 className="text-xl font-bold text-slate-800">
-                  {settings.site_title}
-                </h3>
+                {
+                  !settings.site_logo && (
+                    <h3 className="text-xl font-bold text-slate-800">
+                      {settings.site_title}
+                    </h3>
+                  )
+                }
               </div>
               <p className="text-sm text-slate-600 leading-relaxed">
                 {settings.site_description}

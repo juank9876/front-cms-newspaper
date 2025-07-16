@@ -22,7 +22,7 @@ export async function Logo() {
   return (
     <Link
       href="/"
-      className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+      className="flex items-center py-10 space-x-2 hover:opacity-80 transition-opacity"
     >
       {site_logo ? (
         <Image
@@ -30,7 +30,7 @@ export async function Logo() {
           src={site_logo}
           width={120}
           height={40}
-          className="h-8 w-auto object-contain"
+          className="h-16 w-auto object-contain "
         />
       ) : (
         <div className="flex items-center space-x-2">
