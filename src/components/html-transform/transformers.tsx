@@ -8,18 +8,19 @@ import {
   Circle
 } from 'lucide-react'
 import BrandlistyWidget from '../juankui/brandlisty-widget'
+import { BrandlistyScript } from '../juankui/brandlisty-script'
 
 export function transformBrandlisty(el: Element) {
   const { apikey, listid, boton, limit, id } = el.attribs
 
   return (
     <div className="flex h-full">
-      <BrandlistyWidget
+      <BrandlistyScript
         key={id}
-        apiKey={apikey || el.attribs['data-apikey']}
-        listId={listid || el.attribs['data-listid']}
-        boton={boton || el.attribs['data-boton']}
-        limit={limit || el.attribs['data-limit']}
+      //apiKey={apikey || el.attribs['data-apikey']}
+      //listId={listid || el.attribs['data-listid']}
+      //boton={boton || el.attribs['data-boton']}
+      //limit={limit || el.attribs['data-limit']}
       />
     </div>
   )

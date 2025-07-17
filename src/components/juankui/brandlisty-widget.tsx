@@ -8,7 +8,7 @@ interface Props {
   boton?: string
   limit?: string
 }
-function removeUniversalReset (cssString: string) {
+function removeUniversalReset(cssString: string) {
   // Regex para detectar la regla universal * con esos 3 estilos en cualquier orden y con espacios o saltos
   //const universalRuleRegex = /\*\s*\{\s*(?:box-sizing:\s*border-box;\s*)?(?:margin:\s*0;\s*)?(?:padding:\s*0;\s*)?(?:box-sizing:\s*border-box;\s*)?(?:margin:\s*0;\s*)?(?:padding:\s*0;\s*)?\}/gi
 
@@ -19,7 +19,7 @@ function removeUniversalReset (cssString: string) {
   return cssString.replace(exactRuleRegex, '')
 }
 
-export default function BrandlistyWidget ({
+export default function BrandlistyWidget({
   apiKey,
   listId,
   boton = "Visit now",
