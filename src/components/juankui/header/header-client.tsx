@@ -1,5 +1,4 @@
 "use client";
-import { useScrollDirection } from "@/utils/use-scroll-direction";
 import { Logo } from '../logo'
 import { RenderMenu } from './render-menu'
 import { NavMobile } from './nav-mobile'
@@ -9,7 +8,6 @@ import Link from 'next/link'
 import { BreakingNews } from './breaking-news'
 
 export function HeaderClient({ categoriesItems, settings, normalizedItems }: any) {
-    const scrollDirection = useScrollDirection();
     const navProps = { categoriesItems, settings, normalizedItems };
 
     return (
@@ -17,7 +15,7 @@ export function HeaderClient({ categoriesItems, settings, normalizedItems }: any
             className={`
          sticky top-0 z-50 w-full bg-white shadow-sm border-b border-slate-200
         transition-transform duration-300
-        ${scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"}
+        
       `}
         >
             {/* Main Header */}
