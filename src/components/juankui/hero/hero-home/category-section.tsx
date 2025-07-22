@@ -25,7 +25,7 @@ export async function CategorySection({ category, isNew, isLive }: { category: C
                 {categoryPosts.posts?.slice(5).map(async (article: Post) => (
                     <Link href={await permalinkPost(article.id)} key={article.id} className="flex flex-col w-custom items-start justify-start py-2 border-t border-slate-200 pt-8 first:pl-0 last:border-r-0 gap-5">
                         {article.featured_image && (
-                            <div className="relative w-96 h-64 flex ">
+                            <div className="relative w-full h-96 flex mx-auto">
                                 <Image
                                     src={article.featured_image}
                                     alt={article.title}
@@ -38,7 +38,7 @@ export async function CategorySection({ category, isNew, isLive }: { category: C
                             <h4 className="hover:underline text-xl font-semibold text-start font-serif">{badge} {article.title}</h4>
                             <div>
                                 <AuthorDate isTextCenter={true} author={article.author_name} date={formatDate(article.created_at, { includeTime: false, uppercase: false })} />
-                                <p className=" text-start text-base text-gray-600">{article.excerpt}</p>
+                                <p className=" text-start text-base text-gray-600 line-clamp-3">{article.excerpt}</p>
                             </div>
                         </div>
                     </Link>

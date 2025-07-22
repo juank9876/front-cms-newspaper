@@ -14,7 +14,7 @@ export function transformBrandlisty(el: Element) {
   const { apikey, listid, boton, limit, id } = el.attribs
 
   return (
-    <div className="flex h-full">
+    <div className={`flex h-full ${el.attribs.class || ''}`}>
       <BrandlistyWidget
         key={id}
         apiKey={apikey || el.attribs['data-apikey']}
@@ -87,7 +87,7 @@ export function transformCol(el: Element, options: HTMLReactParserOptions) {
 //Version Bootstrap
 export function transformCard(el: Element, options: HTMLReactParserOptions) {
   return (
-    <CardShine className='relative mx-auto my-5 flex w-full max-w-[350px] overflow-hidden transition duration-500 hover:scale-105'>
+    <CardShine className={`relative mx-auto my-5 flex w-full max-w-[350px] overflow-hidden transition duration-500 hover:scale-105 ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </CardShine>
   )
@@ -95,7 +95,7 @@ export function transformCard(el: Element, options: HTMLReactParserOptions) {
 
 export function transformCardBody(el: Element, options: HTMLReactParserOptions) {
   return (
-    <div className='flex flex-col space-y-3'>
+    <div className={`flex flex-col space-y-3 ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </div>
   )
@@ -123,7 +123,7 @@ export function transformButton(el: Element, options: HTMLReactParserOptions) {
     <Button variant={'accent'} asChild>
       <a
         href={el.attribs.href || '#'}
-        className=""
+        className={`${el.attribs.class || ''}`}
       >
         {domToReact(el.children as DOMNode[], options)}
       </a>
@@ -162,7 +162,7 @@ export function transformH3(el: Element, options: HTMLReactParserOptions) {
 
   return (
     <div className=' flex flex-row items-center justify-start'>
-      <h3 className='pt-10 pb-3'>
+      <h3 className={`pt-10 pb-3 ${el.attribs.class || ''}`}>
         {domToReact(el.children as DOMNode[], options)}
       </h3>
     </div>
@@ -176,7 +176,7 @@ export function transformLi(el: Element, options: HTMLReactParserOptions) {
         <Circle className="size-3" />
       </span>
 
-      <div className="prose max-w-none [&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold">
+      <div className={`prose max-w-none [&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold ${el.attribs.class || ''}`}>
         {domToReact(el.children as DOMNode[], options)}
       </div>
     </li>
@@ -184,9 +184,9 @@ export function transformLi(el: Element, options: HTMLReactParserOptions) {
 }
 
 export function transformP(el: Element, options: HTMLReactParserOptions) {
+  //console.log(el.attribs)
   return (
-
-    <p className="[&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold">
+    <p className={`[&>*]:inline [&>code]:inline [&>strong]:inline [&>strong]:font-bold ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </p>
   )
@@ -195,7 +195,7 @@ export function transformP(el: Element, options: HTMLReactParserOptions) {
 export function transformPre(el: Element, options: HTMLReactParserOptions) {
 
   return (
-    <pre className="overflow-x-auto rounded-md bg-zinc-900 p-4 text-white">
+    <pre className={`overflow-x-auto rounded-md bg-zinc-900 p-4 text-white ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </pre>
   );
@@ -203,7 +203,7 @@ export function transformPre(el: Element, options: HTMLReactParserOptions) {
 
 export function transformForm(el: Element, options: HTMLReactParserOptions) {
   return (
-    <form className="flex flex-col border border-gray-700 rounded-lg p-5 gap-y-3 justify-between">
+    <form className={`flex flex-col border border-gray-700 rounded-lg p-5 gap-y-3 justify-between ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </form>
   )
@@ -253,7 +253,7 @@ export function transformCode(el: Element) {
   if (!codeContent) return null; // ⛔ No renderizar si está vacío
 
   return (
-    <code className="mx-0.5 block items-end justify-start whitespace-pre">
+    <code className={`mx-0.5 block items-end justify-start whitespace-pre ${el.attribs.class || ''}`}>
       {getText(el.children as DOMNode[])}
     </code>
   );
@@ -261,7 +261,7 @@ export function transformCode(el: Element) {
 
 export function transformStrong(el: Element, options: HTMLReactParserOptions) {
   return (
-    <strong className="flex font-bold">
+    <strong className={`flex font-bold ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </strong>
   )
