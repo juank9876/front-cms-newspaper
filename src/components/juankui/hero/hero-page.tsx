@@ -1,5 +1,5 @@
 import { Page } from "@/types/types"
-import { Breadcrumbs } from "../breadcrumbs"
+import { Breadcrumbs } from "./breadcrumbs"
 
 export function HeroPage({ title, meta_description, breadcrumbs }: Page) {
     return (

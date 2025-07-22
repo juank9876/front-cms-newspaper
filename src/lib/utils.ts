@@ -125,3 +125,12 @@ export function isLiveArticle(createdAt: string | Date): boolean {
   const dias = diferenciaMs / (1000 * 60 * 60 * 24);
   return dias < 7;
 }
+
+export function fixAttribs(attribs: Record<string, any>) {
+  const newAttribs = { ...attribs };
+  if (newAttribs.class) {
+    newAttribs.className = newAttribs.class;
+    delete newAttribs.class;
+  }
+  return newAttribs;
+}

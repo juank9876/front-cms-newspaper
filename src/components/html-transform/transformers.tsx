@@ -7,20 +7,20 @@ import {
   //ArrowRight, Star, Sparkles, Flame, Bolt, 
   Circle
 } from 'lucide-react'
-import BrandlistyWidget from '../juankui/brandlisty-widget'
-import { BrandlistyScript } from '../juankui/brandlisty-script'
+import BrandlistyWidget from '../juankui/brandlisty/brandlisty-widget'
+import { fixAttribs } from '@/lib/utils'
 
 export function transformBrandlisty(el: Element) {
   const { apikey, listid, boton, limit, id } = el.attribs
 
   return (
     <div className="flex h-full">
-      <BrandlistyScript
+      <BrandlistyWidget
         key={id}
-      //apiKey={apikey || el.attribs['data-apikey']}
-      //listId={listid || el.attribs['data-listid']}
-      //boton={boton || el.attribs['data-boton']}
-      //limit={limit || el.attribs['data-limit']}
+        apiKey={apikey || el.attribs['data-apikey']}
+        listId={listid || el.attribs['data-listid']}
+        boton={boton || el.attribs['data-boton']}
+        limit={limit || el.attribs['data-limit']}
       />
     </div>
   )
@@ -149,7 +149,7 @@ export function transformImg(el: Element) {
 export function transformH2(el: Element, options: HTMLReactParserOptions) {
   return (
     <div className='flex flex-col space-y-5 pb-3 pt-10'>
-      <h2 className='pt-10 pb-3'>
+      <h2 className={`pt-10 pb-3 ${el.attribs.class || ''}`}>
         {domToReact(el.children as DOMNode[], options)}
       </h2>
     </div>
@@ -210,24 +210,23 @@ export function transformForm(el: Element, options: HTMLReactParserOptions) {
 }
 
 export function transformInput(el: Element, options: HTMLReactParserOptions) {
+  const attribs = fixAttribs(el.attribs);
   return (
     <input
-      id={el.attribs.id || ''}
-      name={el.attribs.name || ''}
-      type={el.attribs.type || 'text'}
-      placeholder={el.attribs.placeholder || ''}
-      className="w-full p-2 rounded-md border border-gray-700"
-
+      type={attribs.type || 'text'}
+      placeholder={attribs.placeholder || ' '}
+      {...attribs}
+      className={`w-full p-2 border border-gray-300 ${attribs.className || ''}`}
     />
   )
 }
 export function transformTextarea(el: Element, options: HTMLReactParserOptions) {
+  const attribs = fixAttribs(el.attribs);
+
   return (
     <textarea
-      id={el.attribs.id || ''}
-      name={el.attribs.name || ''}
-      placeholder={el.attribs.placeholder || ''}
-      className="w-full p-2 rounded-md border border-gray-700"
+      {...attribs}
+      className={`w-full p-2 border border-gray-300 ${attribs.className || ''}`}
     />
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 import { Post } from "@/types/types"
-import { Breadcrumbs } from "../breadcrumbs"
+import { Breadcrumbs } from "./breadcrumbs"
 import { Link } from "../optionals/link"
 import { Clock, Copy } from "lucide-react"
 import { formatDate } from "@/lib/utils"

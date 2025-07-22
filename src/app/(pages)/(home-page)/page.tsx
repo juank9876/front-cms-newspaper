@@ -33,7 +33,7 @@ export default async function Home() {
     <PreHomePage
       settings={settings}
     >
-      <HtmlRenderer html={page.html_content} />
+      <HtmlRenderer cssContent={page.css_content} html={page.html_content} />
     </PreHomePage>
 
   )

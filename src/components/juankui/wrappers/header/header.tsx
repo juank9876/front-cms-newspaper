@@ -2,14 +2,14 @@
 import { fetchCategories, fetchMenu } from '@/api-fetcher/fetcher'
 import { normalizeUrl } from '@/lib/utils'
 import { contextSiteSettings } from '@/app/context/getSiteSettings'
-import { Logo } from '../logo'
+import { Logo } from './logo'
 import { RenderMenu } from './render-menu'
 import { NavMobile } from './nav-mobile'
 import { NavigationMenu } from '@/components/ui/navigation-menu'
 import { Search, Bell, User, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { BreakingNews } from './breaking-news'
-import { BarraInformativa } from '../hero/hero-home/barra-informativa'
+import { BarraInformativa } from '../../hero/hero-home/barra-informativa'
 
 export async function Header() {
   const rawNavItems = await fetchMenu()

@@ -6,7 +6,7 @@ import { PrePage } from '@/components/juankui/pre-rendered/pre-page'
 import { fetchPageById } from '@/api-fetcher/fetcher'
 import { getPageSlugToIdMap } from '@/lib/utils'
 
-async function getPageFromParams ({
+async function getPageFromParams({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -21,7 +21,7 @@ async function getPageFromParams ({
   return category
 }
 
-export async function generateMetadata ({
+export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -39,7 +39,7 @@ export async function generateMetadata ({
   }
 }
 
-export default async function Page ({
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -50,7 +50,7 @@ export default async function Page ({
 
     return (
       <PrePage page={page}>
-        <HtmlRenderer html={page.html_content} />
+        <HtmlRenderer cssContent={page.css_content} html={page.html_content} />
       </PrePage>
     )
   } catch (error) {

@@ -1,13 +1,13 @@
 import { Inter, Merriweather, Onest, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/juankui/header/header";
-import { Footer } from "@/components/juankui/footer";
+
+import { Footer } from "@/components/juankui/wrappers/footer";
 import { fetchSiteSettings } from "@/api-fetcher/fetcher";
 import { ViewTransitions } from 'next-view-transitions'
 import { hexToOklch } from "@/utils/hex-to-oklch";
 import { Providers } from "./providers";
 import Head from "next/head";
-import { Html } from "next/document";
+import { Header } from "@/components/juankui/wrappers/header/header";
 
 
 const inter = Inter({

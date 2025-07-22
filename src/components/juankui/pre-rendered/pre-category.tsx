@@ -5,7 +5,7 @@ import { Section } from '../wrappers/section'
 //import { capitalize } from '@/utils/capitalize'
 import { Category } from '@/types/types'
 import { cn } from '@/lib/utils'
-import { ParticlesFull } from '../particles'
+import { ParticlesFull } from '../hero/particles'
 import { isParticles } from '@/config/options'
 
 export function PreCategory({ children, category, className }: { children: ReactNode, className?: string, category: Category }) {

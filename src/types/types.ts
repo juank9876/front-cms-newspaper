@@ -96,6 +96,7 @@ export interface PostResponse {
 
 export interface Post {
   id: string
+  css_content: string | null
   project_id: string
   parent_id: string | null
   author_id: string
@@ -230,6 +231,7 @@ export type PagePostSlugProps = {
 
 export interface Page {
   id: string
+  css_content: string | null
   project_id: string
   parent_id: string | null
   author_id: string

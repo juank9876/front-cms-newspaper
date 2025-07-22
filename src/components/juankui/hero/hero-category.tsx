@@ -1,6 +1,6 @@
 import { Category } from "@/types/types";
 import { DivAccent } from "../aside-items/div-accent";
-import { Breadcrumbs } from "../breadcrumbs";
+import { Breadcrumbs } from "./breadcrumbs";
 
 export function HeroCategory({ name, description, breadcrumbs }: Category) {
     return (
