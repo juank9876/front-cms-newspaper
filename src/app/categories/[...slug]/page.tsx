@@ -1,7 +1,7 @@
 // app/[...slug]/page.tsx
 import { notFound } from 'next/navigation'
 import { fetchArticleById, fetchCategoryById, fetchPermalink } from '@/api-fetcher/fetcher'
-import { getPostSlugToIdMap, getCategorySlugToIdMap, cleanSlug } from '@/lib/utils'
+import { getPostSlugToIdMap, getCategorySlugToIdMap, cleanSlug, createPageTitle } from '@/lib/utils'
 import { capitalize } from '@/utils/capitalize'
 import { PrePost } from '@/components/juankui/pre-rendered/pre-post'
 import HtmlRenderer from '@/components/html-transform/html-renderer'
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
 
         if (data.type === 'post') {
             return {
-                title: capitalize(data.post.title),
+                title: await createPageTitle(data.post.title),
                 description: capitalize(data.post.excerpt),
             }
         }

@@ -103,7 +103,7 @@ export function transformCardBody(el: Element, options: HTMLReactParserOptions) 
 
 export function transformTextElement(el: Element, options: HTMLReactParserOptions) {
   return (
-    <div className="text-element py-3">
+    <div className={`text-element py-3 ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </div>
   )
@@ -111,7 +111,7 @@ export function transformTextElement(el: Element, options: HTMLReactParserOption
 
 export function transformContainer(el: Element, options: HTMLReactParserOptions) {
   return (
-    <div className="border-primary container rounded-lg">
+    <div className={`border-primary container rounded-lg ${el.attribs.class || ''}`}>
       {domToReact(el.children as DOMNode[], options)}
     </div>
   )

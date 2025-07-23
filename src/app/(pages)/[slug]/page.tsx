@@ -4,7 +4,7 @@ import { capitalize } from '@/utils/capitalize'
 import HtmlRenderer from '@/components/html-transform/html-renderer'
 import { PrePage } from '@/components/juankui/pre-rendered/pre-page'
 import { fetchPageById } from '@/api-fetcher/fetcher'
-import { getPageSlugToIdMap } from '@/lib/utils'
+import { createPageTitle, getPageSlugToIdMap } from '@/lib/utils'
 
 async function getPageFromParams({
   params,
@@ -30,7 +30,7 @@ export async function generateMetadata({
     const page = await getPageFromParams({ params: params })
 
     return {
-      title: capitalize(page.title || ''),
+      title: await createPageTitle(page.title || ''),
       description: capitalize(page.meta_description || ''),
     }
   } catch (error) {

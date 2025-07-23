@@ -3,7 +3,15 @@ import { Link } from "@/components/juankui/optionals/link"
 import { Section } from "@/components/juankui/wrappers/section"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { Card, CardContent } from "@/components/ui/card"
-import { formatDate } from "@/lib/utils"
+import { createPageTitle, formatDate } from "@/lib/utils"
+import { capitalize } from "@/utils/capitalize"
+
+export async function generateMetadata() {
+  return {
+    title: await createPageTitle("Categories"),
+    description: capitalize("This is the categories site"),
+  }
+}
 
 export default async function CategoriesPage() {
   const categories = await fetchCategories()

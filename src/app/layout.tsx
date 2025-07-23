@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning className={`${inter.variable} ${onest.variable}`}>
         <Head>
-          <title>{settings.meta_title}</title>
+          <title>{settings.site_title || "Welcome to our site"}</title>
           <meta name="description" content={settings.meta_description} />
           {/* puedes usar settings.favicon, site_logo, etc */}
           <link rel="icon" href={settings.favicon || "/vercel.svg"} />
