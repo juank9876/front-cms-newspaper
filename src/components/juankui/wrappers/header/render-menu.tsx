@@ -70,7 +70,7 @@ export function RenderMenu({ normalizedItems }: { normalizedItems: NavItemType[]
                 </span>
                 <div className="absolute left-0 top-full min-w-[180px] bg-white border border-slate-200 z-20 hidden group-hover/menu:block py-5">
                   <ul className="py-0">
-                    <h4 className="text-base font-light uppercase text-[var(--color-accent-dark)] px-4">Categories</h4>
+                    <h4 className="text-base font-semibold uppercase text-[var(--color-accent-dark)] px-4">Categories</h4>
                     {item.children.map((category) => (
                       <ListItem
                         key={category.id}

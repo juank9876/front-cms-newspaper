@@ -28,8 +28,8 @@ export async function generateMetadata() {
   const page = await getHomePageFromParams()
   try {
     return {
-      title: await createPageTitle(page.title || ''),
-      description: capitalize(page.meta_description || ''),
+      title: await createPageTitle(page?.title || ''),
+      description: capitalize(page?.meta_description || ''),
     }
   } catch (error) {
     console.error('Error generating metadata:', error)
