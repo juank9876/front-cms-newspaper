@@ -11,7 +11,7 @@ export function BreakingNews() {
                 <div className="flex-1 overflow-hidden">
                     <div className="animate-marquee whitespace-nowrap">
                         <span className="text-sm text-white">
-                            <strong>Tercera Guerra Mundial: Rusia y EE.UU. se enfrentan en el mar</strong>
+                            <strong className="text-white">Tercera Guerra Mundial: Rusia y EE.UU. se enfrentan en el mar</strong>
                         </span>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ export function BreakingNews() {
                 <div className="flex-1 overflow-hidden">
                     <div className="animate-marquee whitespace-nowrap">
                         <span className="text-sm text-white">
-                            <strong>ChatGPT se rebela contra su creador</strong>
+                            <strong className="text-white">ChatGPT se rebela contra su creador</strong>
                         </span>
                     </div>
                 </div>

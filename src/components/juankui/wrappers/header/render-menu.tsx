@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Category, NavItemType } from '@/types/types';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import { Link } from '@/components/juankui/optionals/link';
+import { NavLink } from './nav-link';
+
 
 type ListItemProps = {
   title: string;
@@ -27,7 +29,7 @@ function ListItem({ title, href, className, isChild = false, childCategories, pa
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <Link
+      <NavLink
         href={parentSlug ? `${parentSlug}${href}` : '/categories/' + href}
         className={`flex items-center px-4 py-2 text-base font-normal uppercase tracking-wide text-slate-900 hover:underline hover:underline-offset-8 transition-colors duration-150 ${isChild ? 'pl-8 text-sm' : ''}`}
       >
@@ -35,7 +37,7 @@ function ListItem({ title, href, className, isChild = false, childCategories, pa
         {hasSubcategories && (
           <ChevronRight className="text-black ml-2 h-4 w-4 transition-transform duration-200 group-hover:rotate-90" />
         )}
-      </Link>
+      </NavLink>
       {/* Renderizar subcategorías si existen */}
       {hasSubcategories && (
         <ul className={`absolute right-full top-0 mt-0 ml-0 w-[220px] bg-white rounded-lg shadow-lg z-30 ${open ? 'block' : 'hidden'}`}>
@@ -83,12 +85,12 @@ export function RenderMenu({ normalizedItems }: { normalizedItems: NavItemType[]
                 </div>
               </>
             ) : (
-              <Link
-                href={`${item.url}`}
+              <NavLink
+                href={item.url}
                 className="px-4 py-2 text-base font-normal uppercase tracking-wide text-slate-900  hover:underline hover:underline-offset-8 transition-colors duration-150"
               >
                 {item.title}
-              </Link>
+              </NavLink>
             )}
           </li>
         ))}
