@@ -78,14 +78,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
 
     if (data.type === 'post') {
         return {
-            title: await createPageTitle(data.post.title),
-            description: capitalize(data.post.excerpt),
+            title: await createPageTitle(data.post.meta_title, data.post.title),
+            description: capitalize(data.post.meta_description) || data.post.excerpt || '',
         }
     }
 
     return {
-        title: await createPageTitle(data.category.name),
-        description: capitalize(data.category.description),
+        title: await createPageTitle(data.category.meta_title, data.category.name),
+        description: capitalize(data.category.meta_description) || data.category.description || '',
     }
 }
 
