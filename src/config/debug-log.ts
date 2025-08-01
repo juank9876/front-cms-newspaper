@@ -10,7 +10,7 @@ export const debug = {
     },
     fetcher: false,
     pages: false,
-    cssContent: false,
+    cssContent: true,
     postOrCategoryPermalink: false,
     currentPostOrCategoryUrl: false,
 }

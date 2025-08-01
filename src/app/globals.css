@@ -69,9 +69,6 @@
 }
 
 
-body {
-  font-family: var(--font-onest), sans-serif;
-}
 
 
 :root {
@@ -179,8 +176,6 @@ body {
   .w-custom {
     @apply w-[90vw] lg:w-[70vw]
   }
-
-
 }
 
 .bg-gradient-light {

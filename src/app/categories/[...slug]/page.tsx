@@ -74,26 +74,18 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 export async function generateMetadata({ params }: { params: Promise<{ slug?: string[] }> }) {
     const { slug = [] } = await params
 
-    try {
-        const data = await getDataFromParams(slug)
+    const data = await getDataFromParams(slug)
 
-        if (data.type === 'post') {
-            return {
-                title: await createPageTitle(data.post.title),
-                description: capitalize(data.post.excerpt),
-            }
+    if (data.type === 'post') {
+        return {
+            title: await createPageTitle(data.post.title),
+            description: capitalize(data.post.excerpt),
         }
+    }
 
-        return {
-            title: capitalize(data.category.name),
-            description: capitalize(data.category.description),
-        }
-    } catch (error) {
-        // Silenciosamente devuelve metadatos vacíos si hay 404
-        return {
-            title: 'Contenido no encontrado',
-            description: 'Lo que buscas ya no está aquí.',
-        }
+    return {
+        title: await createPageTitle(data.category.name),
+        description: capitalize(data.category.description),
     }
 }
 

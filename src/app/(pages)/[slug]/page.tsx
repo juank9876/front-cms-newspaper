@@ -4,7 +4,12 @@ import { capitalize } from '@/utils/capitalize'
 import HtmlRenderer from '@/components/html-transform/html-renderer'
 import { PrePage } from '@/components/juankui/pre-rendered/pre-page'
 import { fetchPageById } from '@/api-fetcher/fetcher'
-import { createPageTitle, getPageSlugToIdMap } from '@/lib/utils'
+import { createPageTitle, getPageSlugToIdMap, getPostSlugToIdMap } from '@/lib/utils'
+import { fetchArticleById } from '@/api-fetcher/fetcher'
+import { debug, debugLog } from '@/config/debug-log'
+import { PrePost } from '@/components/juankui/pre-rendered/pre-post'
+import NotFound from '@/app/not-found'
+import { createMetadata } from '@/app/seo/createMetadata'
 
 async function getPageFromParams({
   params,
@@ -15,10 +20,21 @@ async function getPageFromParams({
   const { slug } = await params
   const id = map[slug]
 
-  if (!id) return notFound()
 
-  const category = await fetchPageById(id)
-  return category
+  const page = await fetchPageById(id)
+  return page
+}
+async function getPostFromParams({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const map = await getPostSlugToIdMap()
+  const { slug } = await params
+  const id = map[slug]
+
+  const post = await fetchArticleById(id)
+  return post
 }
 
 export async function generateMetadata({
@@ -26,17 +42,9 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>
 }) {
-  try {
-    const page = await getPageFromParams({ params: params })
+  const page = await getPageFromParams({ params })
 
-    return {
-      title: await createPageTitle(page.title || ''),
-      description: capitalize(page.meta_description || ''),
-    }
-  } catch (error) {
-    console.error('Error generating metadata:', error)
-    notFound()
-  }
+  return await createMetadata(page);
 }
 
 export default async function Page({
@@ -44,17 +52,22 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>
 }) {
-  try {
-    const page = await getPageFromParams({ params: params })
-    if (!page || page.status !== 'published') return notFound()
+  const page = await getPageFromParams({ params })
 
-    return (
-      <PrePage page={page}>
-        <HtmlRenderer cssContent={page.css_content} html={page.html_content} />
-      </PrePage>
+  if (page) return (
+    <PrePage page={page}>
+      <HtmlRenderer html={page.html_content} cssContent={page.css_content} />
+    </PrePage>
+  )
+
+  if (!page) {
+    const post = await getPostFromParams({ params })
+
+    if (post) return (
+      <PrePost post={post.post}>
+        <HtmlRenderer html={post.post.html_content} cssContent={post.post.css_content} />
+      </PrePost>
     )
-  } catch (error) {
-    console.log('Error generating metadata:', error)
-    notFound()
+    else return <NotFound />
   }
 }

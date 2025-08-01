@@ -7,7 +7,6 @@ export function Categories({ categories, className }: { categories: Category[], 
     return (
       <div className={`flex flex-col space-y-3 ${className}`}>
         <h2 className='text-2xl font-bold'>Categorias populares</h2>
-        <DivAccent />
         <p className='text-muted-foreground'>No hay categorias disponibles.</p>
       </div>
     );
@@ -21,17 +20,17 @@ export function Categories({ categories, className }: { categories: Category[], 
     <div className={`flex flex-col space-y-3 ${className}`}>
       <h2 className='text-2xl font-bold'>Categorias populares</h2>
       <DivAccent />
-      <ul className='flex flex-col gap-5'>
+      <ul className='flex flex-col '>
         {sortedCategories.map((category) => {
           const url = category.parent_slug ? category.parent_slug + '/' + category.slug : category.slug
           return (
             <li key={category.id}>
               <Link
                 href={`/categories/${url}`}
-                className="group relative flex w-full flex-col overflow-hidden rounded-md border border-[var(--color-accent-light)] transition-transform duration-300 hover:scale-105"
+                className="group relative flex w-full flex-col overflow-hidden  border-b-2 border-black"
               >
                 {/* Contenido textual */}
-                <div className="flex flex-col p-3">
+                <div className="flex flex-col pl-1">
                   <h4 className="line-clamp-2 text-base font-semibold">{category.name}</h4>
                   <p className="text-muted-foreground mt-1 text-sm">{category.post_count} articulos</p>
                 </div>

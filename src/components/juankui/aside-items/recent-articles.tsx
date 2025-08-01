@@ -9,7 +9,7 @@ export function RecentArticles({ articles, className }: { articles: Post[], clas
   if (!articles || articles.length === 0) {
     return null; // No hay artículos recientes
   }
-  const category = fetchCategoryById(articles[2].category_id)
+  //const category = fetchCategoryById(articles[2].category_id)
   const sortedArticles = articles
     .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     .slice(0, 5)
