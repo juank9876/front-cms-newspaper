@@ -100,6 +100,7 @@ export default async function Page({
 
     if (data.type === 'post') {
         const post = data.post
+
         return (
             <PrePost post={post}>
                 <HtmlRenderer html={post.html_content} cssContent={post.css_content} />
@@ -113,7 +114,7 @@ export default async function Page({
     return (
         <PreCategory category={category} className="w-full max-w-6xl mx-auto px-2 md:px-4">
             {posts.length === 0 ? (
-                <span className="text-muted rounded-lg bg-[var(--color-accent)] px-5 py-10 text-xl italic">
+                <span className="rounded-lg px-5 py-10 text-xl italic">
                     Oops! No posts available in this category.
                 </span>
             ) : (

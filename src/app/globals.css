@@ -135,6 +135,9 @@
     @apply text-base lg:text-lg leading-normal py-1 hover:text-gray-800 transition duration-500
   }
 
+  code {
+    @apply text-white
+  }
 
 }
 
