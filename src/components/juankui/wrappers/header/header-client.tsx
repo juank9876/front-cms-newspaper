@@ -1,4 +1,4 @@
-"use client";
+
 import { Logo } from './logo'
 import { RenderMenu } from './render-menu'
 import { NavMobile } from './nav-mobile'
@@ -6,10 +6,11 @@ import { NavigationMenu } from '@/components/ui/navigation-menu'
 import { Search } from 'lucide-react'
 import Link from 'next/link'
 import { BreakingNews } from './breaking-news'
+import { fetchAllSlugs } from '@/api-fetcher/fetcher';
 
-export function HeaderClient({ categoriesItems, settings, normalizedItems }: any) {
+export async function HeaderClient({ categoriesItems, settings, normalizedItems }: any) {
     const navProps = { categoriesItems, settings, normalizedItems };
-
+    const allSlugs = await fetchAllSlugs("category");
     return (
         <header
             className={`
@@ -37,6 +38,7 @@ export function HeaderClient({ categoriesItems, settings, normalizedItems }: any
                             <RenderMenu
                                 categoriesItems={categoriesItems}
                                 normalizedItems={normalizedItems}
+                                allSlugs={allSlugs}
                             />
                         </NavigationMenu>
 
