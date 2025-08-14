@@ -1,5 +1,5 @@
 
-import { fetchCategories, fetchMenu } from '@/api-fetcher/fetcher'
+import { fetchAllSlugs, fetchCategories, fetchMenu } from '@/api-fetcher/fetcher'
 import { normalizeUrl } from '@/lib/utils'
 import { contextSiteSettings } from '@/app/context/getSiteSettings'
 import { Logo } from './logo'
@@ -24,6 +24,7 @@ export async function Header() {
   const settings = await contextSiteSettings()
 
   const navProps = { categoriesItems, settings, normalizedItems }
+  const allSlugs = await fetchAllSlugs("category")
 
   return (
     <header className="flex flex-col top-0 z-50 w-full bg-white shadow-sm border-b border-slate-200">
@@ -73,6 +74,7 @@ export async function Header() {
               <RenderMenu
                 categoriesItems={categoriesItems}
                 normalizedItems={normalizedItems}
+                allSlugs={allSlugs}
               />
             </NavigationMenu>
 
