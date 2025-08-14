@@ -33,7 +33,7 @@ export default async function CategoriesPage() {
                   {/* Contenido centrado */}
                   <CardContent className="relative z-10 flex h-[250px] flex-col justify-between p-5 text-white">
                     <div className="space-y-2">
-                      <h2 className="text-3xl font-bold">{category.name}</h2>
+                      <h2 className="text-3xl font-bold text-white">{category.name}</h2>
                       <p className="text-sm text-white opacity-80">{formatDate(category.created_at)}</p>
                       <p className="text-base text-white opacity-90">{category.description}</p>
                     </div>

@@ -48,7 +48,6 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
     //const categoryId = categoryMap[categorySlug]
     const categoryId = await fetchSlugToId(categorySlug, "category")
-    console.log('categoryId', categoryId, 'categorySlug', categorySlug)
     /*
         const urlSegments = slugArray[0] === "categories" ? slugArray.slice(1) : slugArray;
         let url = "/" + urlSegments.join("/");
@@ -71,7 +70,6 @@ async function getDataFromParams(slugArray: string[]): Promise<RouteData> {
 
         return { type: 'category', category }
     } else {
-        console.log('Category not found', categoryId, categorySlug)
 
         const postSlug = slugArray[slugArray.length - 1]
         const postId = await fetchSlugToId(postSlug, "post")
@@ -104,7 +102,6 @@ export default async function Page({
     const slugArray = (await params).slug || []
     const data = await getDataFromParams(slugArray)
 
-    console.log('test')
     if (data.type === 'post') {
         const post = data.post
 
@@ -121,9 +118,9 @@ export default async function Page({
     return (
         <>
             {posts.length === 0 ? (
-                <PreCategory category={category} className='flex h-full flex-col items-center justify-center'>
+                <PreCategory category={category} className='flex h-full flex-col items-end justify-start'>
 
-                    <span className="text-muted rounded-lg bg-[var(--color-accent)] px-5 py-10 text-xl italic">
+                    <span className="text-black px-5 py-10 text-xl italic">
                         Oops! No posts available in this category.
                     </span>
                 </PreCategory>
