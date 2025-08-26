@@ -1,40 +1,28 @@
-import { fetchPageById, fetchSiteSettings } from '@/api-fetcher/fetcher'
+import { fetchHomePage, fetchPageById, fetchSiteSettings } from '@/api-fetcher/fetcher'
 import { createMetadata } from '@/app/seo/createMetadata'
 import HtmlRenderer from '@/components/html-transform/html-renderer'
 import { PreHomePage } from '@/components/juankui/pre-rendered/pre-home'
-import { getPageSlugToIdMap } from '@/lib/utils'
 import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getHomePageFromParams();
-  return await createMetadata(page);
+  const homePage = await fetchHomePage()
+  return await createMetadata(homePage);
 }
 
-async function getHomePageFromParams() {
-  const map = await getPageSlugToIdMap();
-  let slug = "";
-  let id = map[slug];
-
-  if (!id) {
-    slug = "home"
-    id = map[slug]
-  }
-
-  const homePage = await fetchPageById(id)
-  return homePage
-}
 
 
 export default async function Home() {
-  const page = await getHomePageFromParams()
+  const homePage = await fetchHomePage()
   const settings = await fetchSiteSettings()
-  //console.log(settings)
-  if (page) return (
+  console.log("homePage", homePage)
 
+
+
+  if (homePage) return (
     <PreHomePage
       settings={settings}
     >
-      <HtmlRenderer cssContent={page.css_content} html={page.html_content} />
+      <HtmlRenderer cssContent={homePage.css_content} html={homePage.html_content} />
     </PreHomePage>
 
   )
@@ -42,7 +30,7 @@ export default async function Home() {
     <PreHomePage
       settings={settings}
     >
-      <></>
+      <div className="text-2xl font-bold">No home page found</div>
     </PreHomePage>
   )
 }
