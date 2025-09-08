@@ -34,96 +34,91 @@ export function DefaultFooter({
 }) {
     const currentYear = new Date().getFullYear();
     return (
-        <footer className="w-full bg-gradient-to-b from-slate-100 to-slate-200 border-t border-slate-300">
+        <footer className="w-full bg-[var(--color-primary-dark)]">
             {/* Main Footer Content */}
-            <div className="mx-auto w-[70vw] px-4 py-12 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-                    {/* Brand Section */}
-                    <div className="lg:col-span-3">
-                        <div className="space-y-4">
-                            <div className="flex items-center space-x-2">
-                                {settings.site_logo && (
-                                    <img
-                                        src={settings.site_logo}
-                                        alt={settings.site_title}
-                                        className="h-8 w-auto"
-                                    />
-                                )}
-                                {
-                                    !settings.site_logo && (
-                                        <h3 className="text-xl font-bold text-slate-800">
-                                            {settings.site_title}
-                                        </h3>
-                                    )
-                                }
-                            </div>
-                            <p className="text-sm text-slate-600 leading-relaxed">
-                                {settings.site_description}
-                            </p>
-                        </div>
-                    </div>
+            <div className="py-10 w-[90vw] lg:w-[60vw] mx-auto flex flex-wrap  lg:flex-row gap-5 justify-between">
 
-                    {/* Navigation Links dinámicos */}
-                    <div className="lg:col-span-2">
-                        <FooterLinkList
-                            title="Navegación"
-                            links={menuItems.filter(item => item.status === 'active').map(item => ({
-                                href: item.url,
-                                label: item.title
-                            }))}
+                {/* Brand Section */}
+                <div className="flex flex-col">
+                    {settings.site_logo && (
+                        <img
+                            src={settings.site_logo}
+                            alt={settings.site_title}
+                            className="h-8 w-auto"
                         />
-                    </div>
+                    )}
+                    <h4 className="text-xl font-bold text-white">
+                        {settings.site_title}
+                    </h4>
 
-                    {/* Categorías dinámicas */}
-                    <div className="lg:col-span-2">
-                        <FooterLinkList
-                            title="Categorías"
-                            links={categoriesItems.map(cat => ({
-                                href: `/categories/${cat.slug}`,
-                                label: cat.name
-                            }))}
-                        />
-                    </div>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                        {settings.site_description}
+                    </p>
 
-                    {/* Legal & Support */}
-                    <div className="lg:col-span-2">
-                        <FooterLinkList title="Soporte" links={SUPPORT_LINKS} />
-                    </div>
+                    <FooterSocialIcons />
 
-                    {/* Social & Newsletter */}
-                    <div className="lg:col-span-3">
-                        <h4 className="text-sm font-semibold text-slate-800 uppercase tracking-wide mb-4">
-                            Síguenos
-                        </h4>
-                        <div className="space-y-4">
-                            <FooterSocialIcons />
-                        </div>
+
+                </div>
+
+                {/* Navigation Links dinámicos */}
+
+                <FooterLinkList
+                    title="Navegación"
+                    links={menuItems.filter(item => item.status === 'active').map(item => ({
+                        href: item.url,
+                        label: item.title
+                    }))}
+                />
+
+
+                {/* Categorías dinámicas 
+        <FooterLinkList
+          title="Categorías"
+          links={categoriesItems.map(cat => ({
+            href: `/categories/${cat.slug}`,
+            label: cat.name
+          }))}
+        />
+*/}
+
+                {/* Legal & Support */}
+                <div className="flex flex-col">
+                    <FooterLinkList title="Soporte" links={SUPPORT_LINKS} />
+                </div>
+
+                <div className="">
+                    <h4 className="text-slate-200 uppercase ">Juego Responsable</h4>
+                    <div className="space-x-4 flex flex-wrap flex-row pt-4">
+                        {RESPONSIBLE_GAMING_LINKS.map(link => (
+                            <img
+                                key={link.href}
+                                src={link.href}
+                                alt={link.label}
+                                className="w-fit h-8"
+                            />
+                        ))}
                     </div>
                 </div>
+
+
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-slate-300 bg-slate-200">
-                <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col items-center justify-between sm:flex-row">
-                        <div className="flex items-center space-x-4 text-slate-600">
-                            <span className=" text-sm">
-                                © {currentYear} {settings.site_title}. Todos los derechos
-                                reservados.
-                            </span>
-                        </div>
-                        <div className="mt-4 flex items-center space-x-6 sm:mt-0">
-                            {LEGAL_LINKS.map(link => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-sm text-slate-600 hover:text-slate-800 transition-colors"
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+            <div className="border-t border-slate-300 flex flex-col items-center justify-center  gap-4 py-3 text-slate-300 hover:text-slate-100 font-light">
+                <span className=" text-sm  ">
+                    © {currentYear} {settings.site_title}. Todos los derechos
+                    reservados.
+                </span>
+                <div className="flex justify-center flex-wrap">
+                    {LEGAL_LINKS.map(link => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="text-sm font-light transition-colors px-4 py-1 "
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
                 </div>
             </div>
         </footer>

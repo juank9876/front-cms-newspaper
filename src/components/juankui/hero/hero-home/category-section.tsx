@@ -13,7 +13,7 @@ export async function CategorySection({ category, isNew, isLive }: { category: C
 
     const badge = isNew ? <NewBadge /> : isLive ? <LiveBadge /> : null
 
-    if (Number(category.post_count) > 0) return (
+    if (Number(category.child_categories_count) > 0) return (
         <div key={category.id} className="border-t-8 border-slate-800 w-custom flex flex-col pt-10">
             <h2 className="text-4xl font-extrabold font-serif text-start border-b-2 border-slate-800 pb-2">{category.name}</h2>
             <div className="my-8 w-custom grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-5">

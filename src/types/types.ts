@@ -63,7 +63,13 @@ export interface NavItemType {
   updated_at: string
   children?: NavItemType[]
 }
-
+export interface Slug {
+  slug: {
+    id: string,
+    title: string,
+    type: string
+  }
+}
 export type Category = {
   id: string
   project_id: string
@@ -112,7 +118,7 @@ export interface Post {
   slug: string
   excerpt: string
   html_content: string
-  css_content: string | null
+  css_content: string | undefined
   featured_image: string
   meta_title: string | undefined
   meta_description: string | undefined
@@ -247,7 +253,7 @@ export interface Page {
   slug: string
   excerpt: string
   html_content: string
-  css_content: string | null
+  css_content: string | undefined
   featured_image: string
   meta_title: string
   meta_description: string

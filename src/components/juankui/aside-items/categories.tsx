@@ -13,7 +13,7 @@ export function Categories({ categories, className }: { categories: Category[], 
   }
 
   const sortedCategories = categories.sort(
-    (a, b) => Number(b.post_count ?? 0) - Number(a.post_count ?? 0)
+    (a, b) => Number(b.child_categories_count ?? 0) - Number(a.child_categories_count ?? 0)
   );
 
   return (
@@ -32,7 +32,7 @@ export function Categories({ categories, className }: { categories: Category[], 
                 {/* Contenido textual */}
                 <div className="flex flex-col pl-1">
                   <h4 className="line-clamp-2 text-base font-semibold">{category.name}</h4>
-                  <p className="text-muted-foreground mt-1 text-sm">{category.post_count} articulos</p>
+                  <p className="text-muted-foreground mt-1 text-sm">{category.child_categories_count} articulos</p>
                 </div>
               </Link>
             </li>

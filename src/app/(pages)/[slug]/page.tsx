@@ -60,7 +60,7 @@ export default async function Page({
 
   if (page) return (
     <PrePage page={page}>
-      <HtmlRenderer html={page.html_content} cssContent={page.css_content} />
+      <HtmlRenderer html={page.html_content ?? undefined} cssContent={page.css_content ?? undefined} />
     </PrePage>
   )
 
