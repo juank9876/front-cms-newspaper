@@ -1,3 +1,4 @@
+
 interface SocialLinks {
   facebook?: string;
   twitter?: string;
@@ -5,6 +6,7 @@ interface SocialLinks {
   youtube?: string;
   linkedin?: string;
 }
+
 export interface SiteSettings {
   id: string
   project_id: string
@@ -82,7 +84,6 @@ export type Category = {
   status: string
   seo_url: string
   total_posts: string
-  post_count?: string
   child_categories: Category[] // vacíos en tu caso, pero pueden tener datos
   child_categories_count: number
   posts: Post[]
@@ -93,6 +94,7 @@ export interface PostResponse {
   post: Post
   sidebar: Sidebar // definilo si lo vas a usar, o poné `any`
 }
+
 export interface Slug {
   slug: {
     id: string,
@@ -103,7 +105,6 @@ export interface Slug {
 
 export interface Post {
   id: string
-  css_content: string | null
   project_id: string
   parent_id: string | null
   author_id: string
@@ -111,6 +112,7 @@ export interface Post {
   slug: string
   excerpt: string
   html_content: string
+  css_content: string | null
   featured_image: string
   meta_title: string | undefined
   meta_description: string | undefined
@@ -238,7 +240,6 @@ export type PagePostSlugProps = {
 
 export interface Page {
   id: string
-  css_content: string | null
   project_id: string
   parent_id: string | null
   author_id: string
@@ -246,6 +247,7 @@ export interface Page {
   slug: string
   excerpt: string
   html_content: string
+  css_content: string | null
   featured_image: string
   meta_title: string
   meta_description: string

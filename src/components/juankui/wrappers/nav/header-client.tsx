@@ -1,6 +1,6 @@
 
 import { Logo } from './logo'
-import { RenderMenu } from './render-menu'
+import { RenderMenu } from '../header/render-menu'
 import { NavMobile } from './nav-mobile'
 import { NavigationMenu } from '@/components/ui/navigation-menu'
 import { Search } from 'lucide-react'

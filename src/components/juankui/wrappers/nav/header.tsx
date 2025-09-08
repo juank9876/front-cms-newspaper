@@ -2,14 +2,16 @@
 import { fetchAllSlugs, fetchCategories, fetchMenu } from '@/api-fetcher/fetcher'
 import { normalizeUrl } from '@/lib/utils'
 import { contextSiteSettings } from '@/app/context/getSiteSettings'
-import { Logo } from './logo'
-import { RenderMenu } from './render-menu'
-import { NavMobile } from './nav-mobile'
+
+
 import { NavigationMenu } from '@/components/ui/navigation-menu'
 import { Search, Bell, User, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { BreakingNews } from './breaking-news'
 import { BarraInformativa } from '../../hero/hero-home/barra-informativa'
+import { Logo } from './logo'
+import { RenderMenu } from './render-menu'
+import { NavMobile } from './nav-mobile'
 
 export async function Header() {
   const rawNavItems = await fetchMenu()
@@ -70,13 +72,13 @@ export async function Header() {
 
 
             {/* Desktop Navigation */}
-            <NavigationMenu className="hidden lg:flex lg:items-center lg:space-x-8">
+            <div className="hidden lg:flex lg:items-center lg:space-x-8">
               <RenderMenu
                 categoriesItems={categoriesItems}
                 normalizedItems={normalizedItems}
                 allSlugs={allSlugs}
               />
-            </NavigationMenu>
+            </div>
 
 
           </div>

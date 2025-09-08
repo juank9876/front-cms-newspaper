@@ -2,6 +2,7 @@
 
 
 
+
 export const debug = {
     brandlisty: {
         url: false,
@@ -20,11 +21,9 @@ export const debug = {
     currentPostOrCategoryUrl: false,
     createMetadata: false,
 
-
     fetchAllSlugs: false,
     fetchSlugToId: false,
-
-    menu: false,
+    apiFooter: true,
 }
 
 
