@@ -165,7 +165,7 @@ export function FooterLinkList({ title, links }: { title: string, links: { href:
   );
   return (
     <div>
-      <h4 className=" text-slate-700 uppercase  tracking-wide mb-4 underline">{title}</h4>
+      <h4 className=" text-slate-200 uppercase  tracking-wide mb-1">{title}</h4>
       <div className={`grid gap-x-6 ${numCols > 1 ? `grid-cols-${numCols}` : ''}`}>
         {columns.map((col, idx) => (
           <ul className="space-y-2" key={idx}>
@@ -173,7 +173,7 @@ export function FooterLinkList({ title, links }: { title: string, links: { href:
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-slate-500 hover:text-stone-700 transition-colors font-semibold"
+                  className="text-sm text-slate-300 hover:text-slate-100 transition-colors font-semibold"
                 >
                   {link.label}
                 </Link>
@@ -236,7 +236,30 @@ export async function FooterSocialIcons() {
     </div>
   )
 }
-
+/*
+function FooterNewsletter() {
+  return (
+    <div className="mt-6 flex flex-col">
+      <p className="text-sm text-slate-100 mb-2">
+        Suscríbete a nuestro boletín
+      </p>
+      <div className="flex">
+        <input
+          id="email"
+          autoComplete="email"
+          type="email"
+          placeholder="tu@email.com"
+          name="email"
+          className="flex-1 py-2 text-sm border border-slate-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+        <button className="px-4 py-2 text-sm font-medium text-white bg-[var(--color-accent)] cursor-pointer rounded-r-md focus:ring-offset-2 transition-colors">
+          Suscribir
+        </button>
+      </div>
+    </div>
+  )
+}
+*/
 
 export async function Footer() {
 
@@ -273,11 +296,9 @@ export async function Footer() {
 
 
   else return (
-    <footer className="w-full bg-gradient-to-b from-slate-100 to-slate-200 border-t border-slate-300">
+    <footer className="w-full bg-[var(--color-primary-dark)]">
       <MainFooterContent footer={footer} settings={settings} />
       <CopyrightBar footer={footer} settings={settings} />
-
-
     </footer>
   );
 }
