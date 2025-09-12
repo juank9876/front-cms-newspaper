@@ -4,157 +4,9 @@ import { SiteSettings } from "@/types/types";
 import Link from "next/link";
 import { DefaultFooter } from "./default-footer";
 import { debug, debugLog } from "@/config/debug-log";
-import { type Footer as FooterType } from "@/types/footer";
-import { MainFooterContent } from "./main-footer-content";
-import { CopyrightBar } from "./copyright-bar";
 
-const exampleFooter = {
-  "status": "success",
-  "message": "Loaded successfully",
-  "data": {
-    "columns": [
-      {
-        "id": 1,
-        "project_id": 1,
-        "title": "Navigation",
-        "sort_order": 1,
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00",
-        "items": [
-          {
-            "id": 1,
-            "column_id": 1,
-            "title": "Home",
-            "url": "/",
-            "target": "_self",
-            "sort_order": 1,
-            "status": "active",
-            "created_at": "2024-01-15 10:00:00",
-            "updated_at": "2024-01-15 10:00:00"
-          },
-          {
-            "id": 2,
-            "column_id": 1,
-            "title": "About Us",
-            "url": "/about",
-            "target": "_self",
-            "sort_order": 2,
-            "status": "active",
-            "created_at": "2024-01-15 10:00:00",
-            "updated_at": "2024-01-15 10:00:00"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "project_id": 1,
-        "title": "Support",
-        "sort_order": 2,
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00",
-        "items": [
-          {
-            "id": 3,
-            "column_id": 2,
-            "title": "Help Center",
-            "url": "/help",
-            "target": "_self",
-            "sort_order": 1,
-            "status": "active",
-            "created_at": "2024-01-15 10:00:00",
-            "updated_at": "2024-01-15 10:00:00"
-          },
-          {
-            "id": 4,
-            "column_id": 2,
-            "title": "Contact",
-            "url": "/contact",
-            "target": "_blank",
-            "sort_order": 2,
-            "status": "active",
-            "created_at": "2024-01-15 10:00:00",
-            "updated_at": "2024-01-15 10:00:00"
-          }
-        ]
-      }
-    ],
-    "legal_images": [
-      {
-        "id": 1,
-        "project_id": 1,
-        "image_url": "https://cdn.example.com/begambleaware.png",
-        "link_url": "https://begambleaware.org",
-        "alt_text": "BeGambleAware",
-        "title": "Responsible Gaming",
-        "sort_order": 1,
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00"
-      },
-      {
-        "id": 2,
-        "project_id": 1,
-        "image_url": "https://cdn.example.com/gambling-commission.png",
-        "link_url": "https://gamblingcommission.gov.uk",
-        "alt_text": "UK Gambling Commission",
-        "title": "Licensed by UKGC",
-        "sort_order": 2,
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00"
-      }
-    ],
-    "legal_links": [
-      {
-        "id": 1,
-        "project_id": 1,
-        "link_type": "privacy_policy",
-        "title": "Privacy Policy",
-        "url": "/privacy-policy",
-        "target": "_self",
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00"
-      },
-      {
-        "id": 2,
-        "project_id": 1,
-        "link_type": "terms_of_service",
-        "title": "Terms of Service",
-        "url": "/terms-of-service",
-        "target": "_self",
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00"
-      },
-      {
-        "id": 3,
-        "project_id": 1,
-        "link_type": "sitemap",
-        "title": "Sitemap",
-        "url": "/sitemap.xml",
-        "target": "_self",
-        "status": "active",
-        "created_at": "2024-01-15 10:00:00",
-        "updated_at": "2024-01-15 10:00:00"
-      }
-    ],
-    "copyright": {
-      "id": 1,
-      "project_id": 1,
-      "start_year": 2020,
-      "end_year": 2024,
-      "company_name": "Your Company Name",
-      "copyright_text": "All rights reserved",
-      "status": "active",
-      "created_at": "2024-01-15 10:00:00",
-      "updated_at": "2024-01-15 10:00:00"
-    }
-  },
-  "response_time": 45
-}
+
+
 
 export function FooterLinkList({ title, links }: { title: string, links: { href: string, label: string }[] }) {
   // Si hay más de 5, dividir en columnas
@@ -164,8 +16,8 @@ export function FooterLinkList({ title, links }: { title: string, links: { href:
     links.slice(i * maxPerCol, (i + 1) * maxPerCol)
   );
   return (
-    <div>
-      <h4 className=" text-slate-200 uppercase  tracking-wide mb-1">{title}</h4>
+    <div className="flex flex-col">
+      <h4 className="text-sm font-semibold text-slate-800 uppercase tracking-wide mb-4">{title}</h4>
       <div className={`grid gap-x-6 ${numCols > 1 ? `grid-cols-${numCols}` : ''}`}>
         {columns.map((col, idx) => (
           <ul className="space-y-2" key={idx}>
@@ -173,7 +25,7 @@ export function FooterLinkList({ title, links }: { title: string, links: { href:
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-slate-300 hover:text-slate-100 transition-colors font-semibold"
+                  className="text-sm text-slate-600 hover:text-slate-800 transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -236,36 +88,8 @@ export async function FooterSocialIcons() {
     </div>
   )
 }
-/*
-function FooterNewsletter() {
-  return (
-    <div className="mt-6 flex flex-col">
-      <p className="text-sm text-slate-100 mb-2">
-        Suscríbete a nuestro boletín
-      </p>
-      <div className="flex">
-        <input
-          id="email"
-          autoComplete="email"
-          type="email"
-          placeholder="tu@email.com"
-          name="email"
-          className="flex-1 py-2 text-sm border border-slate-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-        <button className="px-4 py-2 text-sm font-medium text-white bg-[var(--color-accent)] cursor-pointer rounded-r-md focus:ring-offset-2 transition-colors">
-          Suscribir
-        </button>
-      </div>
-    </div>
-  )
-}
-*/
 
 export async function Footer() {
-
-  let isFooter = false
-  //exampleFooter.data;
-
   const [menuItems, categoriesItems, settings, footer] = await Promise.all([
     fetchMenu(),
     fetchCategories(),
@@ -273,32 +97,13 @@ export async function Footer() {
     fetchFooter()
   ]);
 
-  // Check if footer data is empty
-  if (footer !== undefined &&
-    footer.columns.length === 0 &&
-    footer.legal_images.length === 0 &&
-    footer.legal_links.length === 0 &&
-    footer.copyright === null) {
-    isFooter = false;
-  } else isFooter = true;
-
   debugLog(debug.apiFooter, `[+] Footer data: ` + JSON.stringify(footer, null, 2))
+  return (
+    <DefaultFooter
+      settings={settings}
+      menuItems={menuItems}
+      footerData={footer}
 
-  if (isFooter == false || footer === undefined) {
-    return (
-      <DefaultFooter
-        settings={settings}
-        menuItems={menuItems}
-        categoriesItems={categoriesItems}
-      />
-    )
-  }
-
-
-  else return (
-    <footer className="w-full bg-[var(--color-primary-dark)]">
-      <MainFooterContent footer={footer} settings={settings} />
-      <CopyrightBar footer={footer} settings={settings} />
-    </footer>
-  );
+    />
+  )
 }

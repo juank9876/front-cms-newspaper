@@ -1,4 +1,4 @@
-import { HeroPost } from '@/components/juankui/hero/hero'
+
 import { MainWrapper } from '@/components/juankui/wrappers/main-wrapper'
 import { Post } from '@/types/types'
 import { ReactNode } from 'react'
@@ -8,6 +8,7 @@ import { Section } from '../wrappers/section'
 import Image from 'next/image';
 import { fetchAuthorById } from '@/api-fetcher/fetcher'
 import { settings as cssSettings } from "@/config/debug-log";
+import { HeroPost } from '../hero/hero'
 
 async function AuthorCard({ name, avatar, bio, author_id }: { name: string, avatar?: string, bio?: string, author_id: string }) {
   const author = await fetchAuthorById(author_id);
