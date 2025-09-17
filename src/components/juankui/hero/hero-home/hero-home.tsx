@@ -17,15 +17,10 @@ export async function HeroHome({ site_title, site_description }: SiteSettings) {
 
     return (
         <section className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
-            <div className="w-custom my-10 pb-5 flex h-full flex-col items-center justify-center border-b border-slate-800">
-                <h1 className="text-center text-black font-serif">
-                    {site_title}
-                </h1>
-                <p className="hero-text-description text-center text-sm font-serif">{site_description}</p>
-            </div>
+
 
             {/* Layout de portada tipo El País: 3 columnas */}
-            <div className="w-custom h-full flex flex-col md:flex-row pb-5  ">
+            <div className="w-custom h-full flex flex-col md:flex-row py-5  ">
                 {/* Columna 1: Principal (2/3) */}
                 <div className="w-full md:w-2/4 flex flex-col pr-6 border-r border-slate-200 ">
                     {articles[0] && <DestacadoCard article={articles[0]} />}
