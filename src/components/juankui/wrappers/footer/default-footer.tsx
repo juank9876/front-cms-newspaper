@@ -219,13 +219,16 @@ export function DefaultFooter({
                             height={100}
                         />
                     )}
-                    <h4 className="text-xl font-bold text-foreground mt-3">
-                        {settings.site_title}
-                    </h4>
-                    <p className="text-sm text-foreground leading-relaxed my-0 py-0">
-                        {settings.site_description}
-                    </p>
-                    <FooterSocialIcons />
+                    <div className="flex flex-col gap-2">
+                        <h4 className="text-xl font-bold text-foreground mt-3">
+                            {settings.site_title}
+                        </h4>
+                        <p className="text-sm text-foreground leading-relaxed pb-1">
+                            {settings.site_description}
+                        </p>
+                        <FooterSocialIcons />
+
+                    </div>
                 </div>
 
                 {/* Dynamic Footer Columns from API */}

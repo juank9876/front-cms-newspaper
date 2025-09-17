@@ -9,6 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { Home } from "lucide-react"
 import { Breadcrumb as BreadcrumbType } from "@/types/types"
 import { Fragment, useMemo } from "react";
 import { Link } from "../optionals/link";
@@ -90,12 +91,15 @@ export function Breadcrumbs({ breadcrumbs, className }: BreadcrumbsProps) {
     <Breadcrumb className={`${className}`}>
       <BreadcrumbList>
 
-        {nonCurrentBreadcrumbs.map((bread) => (
+        {nonCurrentBreadcrumbs.map((bread, index) => (
 
           <Fragment key={bread.fullUrl}>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link className="text-slate-500" href={bread.fullUrl}>{bread.title}</Link>
+                <Link href={bread.fullUrl} className="flex items-center gap-1">
+                  {index === 0 && <Home className="w-4 h-4" />}
+                  {bread.title}
+                </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />

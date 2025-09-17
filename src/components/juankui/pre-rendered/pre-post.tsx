@@ -58,7 +58,7 @@ async function AuthorCard({ name, avatar, bio, author_id }: { name: string, avat
 
   // Si no hay enlaces válidos, no renderices la fila de iconos
   return (
-    <div className="border-t border-b py-6 px-10 flex items-center gap-4 my-6 rounded-lg hover:to-[var(--color-primary-semi-dark)] transition-colors bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary-dark)]">
+    <div className="border-t border-b  py-6 px-10 flex items-center gap-4 my-6 rounded-lg  transition-colors">
       <div className="flex-shrink-0">
         <Image
           src={avatar || 'https://api.dicebear.com/7.x/lorelei/svg?seed=default'}
@@ -69,15 +69,15 @@ async function AuthorCard({ name, avatar, bio, author_id }: { name: string, avat
         />
       </div>
       <div className="flex-1 space-y-2">
-        <h3 className="font-bold text-xl text-white pl-1">{name}</h3>
-        {bio && <div className="text-slate-200 text-sm pl-1">{bio}</div>}
+        <h3 className="font-bold text-xl text-slate-600 pl-1">{name}</h3>
+        {bio && <div className=" text-sm text-slate-600 pl-1">{bio}</div>}
         {validLinks.length > 0 && (
           <div className="flex space-x-4 justify-start items-center mt-2">
             {validLinks.map(social => (
               <a
                 key={social.label}
                 href={social.href}
-                className="text-slate-200 hover:text-white transition-colors"
+                className=" transition-colors"
                 aria-label={social.label}
                 target="_blank"
                 rel="noopener noreferrer"
