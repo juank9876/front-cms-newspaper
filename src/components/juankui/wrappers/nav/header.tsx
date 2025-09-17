@@ -34,9 +34,9 @@ export async function Header() {
       {/* Main Header */}
       <div className='grid grid-cols-3 w-[80vw] mx-auto h-full border-b border-slate-200 pb-5'>
         <BarraInformativa />
-        <div className=" flex items-center mx-auto">
-          <Logo />
-        </div>
+
+        <Logo />
+
         {/* Right Side Actions */}
         <div className="flex items-center space-x-4 justify-end">
           {/* Search */}

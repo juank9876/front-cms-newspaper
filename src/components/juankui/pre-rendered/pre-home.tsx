@@ -1,4 +1,4 @@
-import { HeroHomePage } from '@/components/juankui/hero/hero'
+
 import { MainWrapper } from '@/components/juankui/wrappers/main-wrapper'
 //import { capitalize } from '@/utils/capitalize'
 import { ReactNode } from 'react'
@@ -7,7 +7,7 @@ import { isParticles } from '@/config/options'
 import { ParticlesFull } from '../hero/particles'
 import { Page, SiteSettings } from '@/types/types'
 import { settings as cssSettings } from "@/config/debug-log";
-
+import { HeroHome } from '@/components/juankui/hero/hero-home/hero-home'
 
 interface HomePage {
   children: ReactNode
@@ -23,7 +23,7 @@ export function PreHomePage({ children, settings, pageProps }: HomePage) {
   return (
     <MainWrapper>
       {isParticles && <ParticlesFull />}
-      {cssSettings.styles.applyTemplateStyles && <HeroHomePage {...props} />}
+      {cssSettings.styles.applyTemplateStyles && <HeroHome {...props} />}
 
       <Section>
         <div className='flex max-w-[90vw] flex-col space-y-5 lg:max-w-[60vw]'>

@@ -18,23 +18,25 @@ export function BarraInformativa() {
     const horaStr = fecha.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
 
     return (
-        <div className="flex items-center gap-2 text-xs md:text-sm px-2 py-1 bg-white ">
+        <div className="flex items-center justify-center flex-wrap gap-2 text-xs md:text-sm px-2 py-1 bg-white ">
             <span className="text-xs">{fechaStr}</span>
             <span className="mx-1 text-sm">|</span>
             <span className="text-xs">Actualizado {horaStr}</span>
             <span className="mx-1 text-sm">|</span>
             <span className="text-sm">CEST</span>
             <span className="mx-1 text-sm">|</span>
-            <span className="text-sm">Seleccione:</span>
-            <select
-                className="ml-1 px-2 py-1 border rounded font-bold"
-                value={pais}
-                onChange={e => setPais(e.target.value)}
-            >
-                {paises.map((p, index) => (
-                    <option id={index.toString()} key={p.value} value={p.value}>{p.label}</option>
-                ))}
-            </select>
+            <div className="flex items-center">
+                <span className="text-sm">Seleccione:</span>
+                <select
+                    className="ml-1 px-2 py-1 border rounded font-bold"
+                    value={pais}
+                    onChange={e => setPais(e.target.value)}
+                >
+                    {paises.map((p, index) => (
+                        <option id={index.toString()} key={p.value} value={p.value}>{p.label}</option>
+                    ))}
+                </select>
+            </div>
         </div>
     );
 }
